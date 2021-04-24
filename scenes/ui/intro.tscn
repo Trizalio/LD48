@@ -1,0 +1,99 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/images/john.jpg" type="Texture" id=1]
+[ext_resource path="res://scripts/ui/intro.gd" type="Script" id=2]
+[ext_resource path="res://resources/intro/intro_step_2.tres" type="Resource" id=3]
+[ext_resource path="res://resources/intro/intro_step_1.tres" type="Resource" id=4]
+[ext_resource path="res://resources/intro/intro_step_3.tres" type="Resource" id=5]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_clip_content = true
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 20.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+steps = [ ExtResource( 4 ), ExtResource( 3 ), ExtResource( 5 ) ]
+texture_rect_path = NodePath("VBoxContainer/Container/TextureRect")
+text_label_path = NodePath("VBoxContainer/Panel/VBoxContainer/RichTextLabel")
+button_path = NodePath("VBoxContainer/Panel/VBoxContainer/VBoxContainer/Button")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 12.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Container" type="CenterContainer" parent="VBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 506.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 17.0
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Container"]
+margin_left = 262.0
+margin_top = 3.0
+margin_right = 762.0
+margin_bottom = 503.0
+grow_horizontal = 0
+grow_vertical = 0
+rect_min_size = Vector2( 500, 500 )
+rect_clip_content = true
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 11.0
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 6
+
+[node name="Panel" type="Panel" parent="VBoxContainer"]
+margin_top = 510.0
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/Panel/VBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 66.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "TEXT"
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Panel/VBoxContainer"]
+margin_top = 70.0
+margin_right = 1024.0
+margin_bottom = 90.0
+
+[node name="Button" type="Button" parent="VBoxContainer/Panel/VBoxContainer/VBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 20.0
+text = "NEXT"
+
+[connection signal="button_down" from="VBoxContainer/Panel/VBoxContainer/VBoxContainer/Button" to="." method="advance"]

@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Resource",
+"class": "IntroStep",
+"language": "GDScript",
+"path": "res://resources/intro/intro_step.gd"
+} ]
+_global_script_class_icons={
+"IntroStep": ""
+}
+
 [application]
 
 config/name="ld48"
