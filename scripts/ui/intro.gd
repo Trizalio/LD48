@@ -52,4 +52,5 @@ func _on_TextureButton2_pressed():
 
 
 func _on_TextureButton3_pressed():
-	get_tree().change_scene("res://scenes/ui/main_scene.tscn")
+#	get_tree().change_scene("res://scenes/ui/main_scene.tscn")
+	SceneChanger.goto_scene("res://scenes/ui/main_scene.tscn")

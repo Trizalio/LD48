@@ -232,6 +232,7 @@ text = "Play"
 stream = ExtResource( 12 )
 volume_db = -6.0
 autoplay = true
+
 [connection signal="button_down" from="VBoxContainer/Panel/VBoxContainer/VBoxContainer/Button" to="." method="advance"]
 [connection signal="pressed" from="Panel1/TextureButton1" to="." method="_on_TextureButton1_pressed"]
 [connection signal="pressed" from="Panel2/TextureButton2" to="." method="_on_TextureButton2_pressed"]
