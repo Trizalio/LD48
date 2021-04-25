@@ -6,4 +6,5 @@ func start_btn_click_handler():
 
 
 func _on_Button_pressed():
-	get_tree().change_scene("res://scenes/ui/intro.tscn")
+#	get_tree().change_scene("res://scenes/ui/intro.tscn")
+	SceneChanger.goto_scene("res://scenes/ui/intro.tscn")
