@@ -6,6 +6,9 @@ func _ready():
 func get_max_range():
 	return 5
 
+func get_scale():
+	return 50
+
 class PlanetType:
 	const terrestrial_planet: String = "Terrestrial planet"
 	const gas_giant: String = "Gas giant"
