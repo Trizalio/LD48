@@ -7,6 +7,12 @@ var rotation_speed = 0.2
 var _x_coord = 0
 var _y_coord = 0
 var got_pasport = false
+enum OBGECT_TYPES{
+  star,
+  ship,
+  planet
+}
+var objecy_type
 var current_passport
 #var screenWidth = ProjectSettings.get_setting("display/window/size/width")
 #var screenHights = ProjectSettings.get_setting("display/window/size/height")
@@ -22,8 +28,8 @@ func _ready():
 #	collision_shape.shape = rectangle_shape
 #	self.add_child(collision_shape)
 
-#func init_planet(path_to_image, x,y,on_click_event):
-func init_planet(path_to_image, _radius):
+#func init_sapce_obj(path_to_image, x,y,on_click_event):
+func init_sapce_obj(kwargs, _radius, _objecy_type, _rotation_speed):
 #	print(" im here")
 #	radius = _radius
 #	var sprite = Sprite.new()
@@ -39,11 +45,17 @@ func init_planet(path_to_image, _radius):
 #	self.add_child(collision_shape)
 #	self.position = Vector2(_radius, 0)
 ##	var clickable = load("res://scripts/ui/space_objects/""clickable.gd")
+	objecy_type = _objecy_type
+#	if objecy_type == "ship":
+	rotation_speed = _rotation_speed
 	radius = _radius
 	var clickable_ = load("res://scenes/ui/utils/clicable.tscn")
 	var clickable_inst = clickable_.instance()
 	clickable_inst.connect("clicked", self, "open_passport")
-	clickable_inst.init_clicable(path_to_image)
+	var number_of_framse = clickable_inst.animate_sprite.get_sprite_frames().get_frame_count(kwargs["animation"])
+	print(number_of_framse)
+	var frame_number = kwargs["test"] % number_of_framse
+	clickable_inst.init_clicable(kwargs["animation"], frame_number)
 #	clickable_inst.position = Vector2(x, y)
 	self.add_child(clickable_inst)
 

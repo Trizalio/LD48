@@ -5,37 +5,62 @@ extends Node
 # var a = 2
 # var b = "text"
 var rng = RandomNumberGenerator.new()
-var planets = []
+#var planets = []
 var star = 1
-var rotation_speed = 0.1
-
+#var rotation_speed = 0.1
+var space_object_preload= preload("res://scenes/ui/space_objects/planet.tscn")
+var ship_singltone_preload = preload("res://scripts/singletones/ship.gd")
+#var ship_singltone_inst = ship_singltone_preload.instance()
+var star_map_singletone_preload= preload("res://scripts/singletones/star_map.gd")
+#var star_map_singletone_instance = star_map_singletone_preload.instance()
 #class planet_1:
 var screenWidth = ProjectSettings.get_setting("display/window/size/width")
-var screenHights = ProjectSettings.get_setting("display/window/size/height")	
+var screenHights = ProjectSettings.get_setting("display/window/size/height")
+var ship_inst
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	rng.randomize()
 	var my_random_number = rng.randi_range(2, 5)
+#	my_random_number = 0
 #	print(my_random_number, " !!!!!!!!!!!!!!!!!!!!")
 #	var start =
-	var start_ = load("res://scenes/ui/space_objects/planet.tscn")
-	star = start_.instance()
-
+#	var start_ = load("res://scenes/ui/space_objects/planet.tscn")
+	star = space_object_preload.instance()
+#	ship_singltone
 #	print(screenWidth)
 #	print(screenHights)
-	star.init_planet("res://icon.png", 0)
+	print("_______________________________")
+	var current_star_ = Ship.get_current_star()
+	print(current_star_)
+	var star_info = StarMap.get_star_system_info(current_star_)
+#	print(a)
+#	for i in a: 
+#		print(i)
+	print("_______________________________")
+	var kwargs = {"test":1, "animation":"star"} 
+	star.init_sapce_obj(kwargs, 0, "star", 0)
 	star.position = Vector2(screenWidth/2, screenHights/2) 
-#	self.add_child(start)
-	for i in range(1, my_random_number):
-		print(i)
+	
+	kwargs = {"test":0, "animation":"spaceship"} 
+	ship_inst = space_object_preload.instance()
+	ship_inst.init_sapce_obj(kwargs, screenWidth/12, "ship", 0.4)
+	star.add_child(ship_inst)
+	kwargs = {"test":2, "animation":"terrestrial planet"} 
+	for planet_info in star_info.planets:
+#		print(i)
 #		var planet = load("res://scenes/ui/space_objects/planet.tscn")
-		var planet_ = load("res://scenes/ui/space_objects/planet.tscn")
-		var planet = planet_.instance()
-#		planet.init_planet("res://icon.png", screenWidth/2 + i * 100, screenHights/2, "tetetetewwt")
-		planet.init_planet("res://icon.png", i * 100)
+#		var planet_ = load("res://scenes/ui/space_objects/planet.tscn")
+		var planet = space_object_preload.instance()
+		kwargs['animation'] = planet_info.type_name
+		print(planet_info.type_name)
+		kwargs['test'] = planet_info.frame_seed
+		print(kwargs['test'])
+#		planet.init_sapce_obj("res://icon.png", screenWidth/2 + i * 100, screenHights/2, "tetetetewwt")
+		planet.init_sapce_obj(kwargs, planet_info.range_from_star, "planet", 0.005 * planet_info.range_from_star)
+#		kwargs = {"test":i, "animation":"gas giants"} 
 #		planet.position = Vector2(screenWidth/2 + i * 100, screenHights/2)
-		planet.position = Vector2(i * 100, 0)
-		planets.append(planet)
+#		planet.position = Vector2(i * 100, 0)
+#		planets.append(planet)
 #		var test = clickable_instance.Planet_info.new(1,[2],3,4)
 #		var planet_info = PlanetInfo.new()
 #		clickable_instance.init_data(i * 100)
@@ -47,20 +72,25 @@ func _ready():
 	pass # Replace with function body.
 
 func _process(delta):
-	var star_planets =  star.get_children()
-	for planet in star_planets:
-		if planet is KinematicBody2D:
+	var star_objs =  star.get_children()
+	for star_related_obj in star_objs:
+#		print(" 123123")
+		if star_related_obj is KinematicBody2D:
+#			if planet.objecy_type == "ship":
+#				print("33333333333333333333333")
 #		planet.rotate_y(rotation_speed * delta)
 #			planet.rotation += rotation_speed * delta
 #		planet.move(delta)
-			var currnet_pos = planet.position
+			var currnet_pos = star_related_obj.position
 #			print(currnet_pos)
-			planet.angle = fmod(planet.angle + (planet.rotation_speed * delta), 2 * PI)
+			star_related_obj.angle = fmod(star_related_obj.angle +
+			 (star_related_obj.rotation_speed * delta), 2 * PI)
 #			print(planet.angle)
 #			print(planet.radius)
 #			var pos = Vector2(sin(planet.angle) * currnet_pos[0], cos(planet.angle) * planet.radius)
-			var pos = Vector2(sin(planet.angle) * planet.radius, cos(planet.angle) * planet.radius)
-			planet.position = pos
+			var pos = Vector2(sin(star_related_obj.angle) * star_related_obj.radius,
+			 cos(star_related_obj.angle) * star_related_obj.radius)
+			star_related_obj.position = pos
 #			move_and_slide(offset)
 #		planet.rotation += rotation_speed * delta
 
@@ -69,8 +99,10 @@ func _input(event):
 	and event.button_index == BUTTON_LEFT \
 	and event.is_pressed():
 		star.close_passport()
-		for planet in planets:
-			planet.close_passport()
+		var star_planets =  star.get_children()
+		for planet in star_planets:
+			if planet is KinematicBody2D:
+				planet.close_passport()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

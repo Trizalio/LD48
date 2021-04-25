@@ -8,15 +8,20 @@ extends Area2D
 func _ready():
 	pass
 #	print(" wrtf")
-
+var preload_sprite = preload("res://scenes/celestial_body.tscn")
+var animate_sprite: AnimatedSprite = preload_sprite.instance()
 #export (String) var on_click_evevnt = "Click321"
 signal clicked
-func init_clicable(path_to_image):
+func init_clicable(animation: String, frame:int):
 #	print(" wrtfffasdasdasdasdasdasdasd e e e e e e e e e")
-	var sprite = Sprite.new()
-	sprite.texture = load(path_to_image) # could use preload
+#	var animate_sprite = AnimatedSprite.new()
+#	sprite.texture = load(path_to_image) # could use preload
+#	var animate_sprite: AnimatedSprite = preload_sprite.instance()
+#	print(animate_sprite.get_sprite_frames().get_frame_count(animation))
+	animate_sprite.set_animation(animation)
+	animate_sprite.set_frame(frame)
 #	sprite.position = Vector2(x, y)
-	self.add_child(sprite)
+	self.add_child(animate_sprite)
 	var rectangle_shape = RectangleShape2D.new()
 	rectangle_shape.extents = Vector2(32, 32)
 #	rectangle_shape.position = Vector2(_radius, 0)

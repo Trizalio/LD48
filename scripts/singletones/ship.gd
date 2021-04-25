@@ -109,3 +109,5 @@ func jump(destination_star):
 	current_star = destination_star
 	StarMap.move_to_star(destination_star)
 	
+func get_current_star():
+	return current_star
