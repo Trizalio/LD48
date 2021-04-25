@@ -6,26 +6,28 @@ extends Area2D
 #var velocity = Vector2()
 #var rotation_dir = 0
 func _ready():
-	print(" wrtf")
+	pass
+#	print(" wrtf")
 
-export (String) var on_click_evevnt = "Click321"
-
+#export (String) var on_click_evevnt = "Click321"
+signal clicked
 func init_clicable(on_click_ivevnt, path_to_image, x, y ):
-	print(" wrtfffasdasdasdasdasdasdasd e e e e e e e e e")
+#	print(" wrtfffasdasdasdasdasdasdasd e e e e e e e e e")
 	var sprite = Sprite.new()
 	sprite.texture = load(path_to_image) # could use preload
-	sprite.position = Vector2(x, y)
+#	sprite.position = Vector2(x, y)
+	print(x, " ",  y)
 	self.add_child(sprite)
 	var rectangle_shape = RectangleShape2D.new()
 	rectangle_shape.extents = Vector2(32, 32)
 #	rectangle_shape.position = Vector2(_radius, 0)
 	var collision_shape = CollisionShape2D.new()
 	collision_shape.shape = rectangle_shape
-	collision_shape.position = Vector2(x, y)
+#	collision_shape.position = Vector2(x, y)
 	self.add_child(collision_shape)
-	self.position = Vector2(x, y)
-	on_click_evevnt = on_click_ivevnt
-	print(on_click_evevnt)
+#	self.position = Vector2(x, y)
+#	on_click_evevnt = on_click_ivevnt
+#	print(on_click_evevnt)
 #	var clickable = load("res://scripts/
 
 
@@ -33,10 +35,14 @@ func _input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton \
 	and event.button_index == BUTTON_LEFT \
 	and event.is_pressed():
-		self.on_click()
+		print("got clicked  123123123")
+		emit_signal("clicked")
+#		self.on_click()
 
-func on_click():
-	print(on_click_evevnt)
+#func on_click():
+	
+#	print(on_click_evevnt)
+#	emit event
 
 #func _process(delta):
 #	position += direction

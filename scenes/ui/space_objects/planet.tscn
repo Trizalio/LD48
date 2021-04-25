@@ -7,4 +7,4 @@
 script = ExtResource( 2 )
 
 [node name="Clikable" parent="." instance=ExtResource( 1 )]
-position = Vector2( 863.412, 458.903 )
+position = Vector2( 7.1825, -2.50955 )
