@@ -8,10 +8,20 @@
 
 config_version=4
 
+_global_script_classes=[  ]
+_global_script_class_icons={
+}
+
 [application]
 
 config/name="ld48"
+run/main_scene="res://scenes/ui/main_menu.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Ship="*res://scripts/singletones/ship.gd"
+StarMap="*res://scripts/singletones/star_map.gd"
 
 [physics]
 
