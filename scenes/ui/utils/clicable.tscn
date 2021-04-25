@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scripts/ui/space_objects/clickable.gd" type="Script" id=2]
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource( 2 )

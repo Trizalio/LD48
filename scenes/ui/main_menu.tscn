@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://resources/fonts/bebas-neue-font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://scripts/ui/main_menu.gd" type="Script" id=2]
+[ext_resource path="res://resources/Pics/vadim-sadovski-by-vadim-sadovski-orbit.jpg" type="Texture" id=3]
 
 [node name="VBoxContainer" type="VBoxContainer"]
 anchor_right = 1.0
@@ -12,6 +13,11 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="vadim-sadovski-by-vadim-sadovski-orbit" type="Sprite" parent="."]
+position = Vector2( 516.488, 317.77 )
+scale = Vector2( 0.778983, 0.778983 )
+texture = ExtResource( 3 )
 
 [node name="Control" type="Control" parent="."]
 margin_right = 1024.0
@@ -28,6 +34,7 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 margin_left = 9.0
+margin_bottom = 85.0
 rect_min_size = Vector2( 0, 85 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -62,5 +69,4 @@ text = "START"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
 [connection signal="pressed" from="Panel/Button" to="." method="start_btn_click_handler"]

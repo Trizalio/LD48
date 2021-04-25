@@ -1,0 +1,232 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://assets/images/john.jpg" type="Texture" id=1]
+[ext_resource path="res://scripts/ui/intro.gd" type="Script" id=2]
+[ext_resource path="res://resources/intro/intro_step_2.tres" type="Resource" id=3]
+[ext_resource path="res://resources/intro/intro_step_1.tres" type="Resource" id=4]
+[ext_resource path="res://resources/intro/intro_step_3.tres" type="Resource" id=5]
+[ext_resource path="res://resources/Pics/cataclysm.jpg" type="Texture" id=6]
+[ext_resource path="res://resources/fonts/bitwise.tres" type="DynamicFont" id=7]
+[ext_resource path="res://resources/Pics/Icons/Next2.png" type="Texture" id=8]
+[ext_resource path="res://resources/Pics/Icons/Next1.png" type="Texture" id=9]
+[ext_resource path="res://resources/Pics/epherecomesdrakefleet.jpg" type="Texture" id=10]
+[ext_resource path="res://resources/Pics/maxresdefault.jpg" type="Texture" id=11]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_clip_content = true
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 20.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+steps = [ ExtResource( 4 ), ExtResource( 3 ), ExtResource( 5 ) ]
+texture_rect_path = NodePath("VBoxContainer/Container/TextureRect")
+text_label_path = NodePath("RichTextLabel1")
+button_path = NodePath("VBoxContainer/Panel/VBoxContainer/VBoxContainer/Button")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 12.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Container" type="CenterContainer" parent="VBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 506.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 17.0
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Container"]
+visible = false
+margin_left = 262.0
+margin_top = 3.0
+margin_right = 762.0
+margin_bottom = 503.0
+grow_horizontal = 0
+grow_vertical = 0
+rect_min_size = Vector2( 500, 500 )
+rect_clip_content = true
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 11.0
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 6
+
+[node name="Panel" type="Panel" parent="VBoxContainer"]
+margin_top = 510.0
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Panel/VBoxContainer"]
+visible = false
+margin_right = 1024.0
+margin_bottom = 20.0
+
+[node name="Button" type="Button" parent="VBoxContainer/Panel/VBoxContainer/VBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 20.0
+text = "NEXT"
+
+[node name="RichTextLabel1" type="RichTextLabel" parent="."]
+visible = false
+margin_top = 511.0
+margin_right = 1024.0
+margin_bottom = 598.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/normal_font = ExtResource( 7 )
+text = "TEXTTEXTTEXTTEXTTEXTTEXTTEXTTEXTTEXTTEXTTEXTTEXTTEXT"
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Sprite1" type="Sprite" parent="."]
+position = Vector2( 514.668, 319.139 )
+scale = Vector2( 1.02926, 1.02926 )
+texture = ExtResource( 6 )
+
+[node name="Panel1" type="Panel" parent="."]
+margin_left = 1.0
+margin_top = 522.0
+margin_right = 1029.0
+margin_bottom = 600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextEdit" type="Label" parent="Panel1"]
+anchor_bottom = 0.141
+margin_left = 17.0
+margin_top = 15.0
+margin_right = 1028.0
+margin_bottom = 89.002
+custom_fonts/font = ExtResource( 7 )
+text = "The Earth is the cradle of cruel humanity.
+People constantly fought internecine wars, until they finally destroyed their home."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton1" type="TextureButton" parent="Panel1"]
+margin_left = 904.763
+margin_top = 21.8193
+margin_right = 985.763
+margin_bottom = 53.8193
+texture_normal = ExtResource( 9 )
+texture_pressed = ExtResource( 8 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite2" type="Sprite" parent="."]
+visible = false
+position = Vector2( 506.488, 272.143 )
+texture = ExtResource( 10 )
+
+[node name="Panel2" type="Panel" parent="."]
+visible = false
+margin_left = 1.0
+margin_top = 522.0
+margin_right = 1029.0
+margin_bottom = 600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextEdit" type="Label" parent="Panel2"]
+visible = false
+anchor_bottom = 0.141
+margin_left = 17.0
+margin_top = 15.0
+margin_right = 1028.0
+margin_bottom = 89.002
+custom_fonts/font = ExtResource( 7 )
+text = "However, before the death of the Earth, humanity managed to build and launch ark ships 
+in deep space together."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton2" type="TextureButton" parent="Panel2"]
+visible = false
+margin_left = 904.763
+margin_top = 21.8193
+margin_right = 985.763
+margin_bottom = 53.8193
+texture_normal = ExtResource( 9 )
+texture_pressed = ExtResource( 8 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite3" type="Sprite" parent="."]
+visible = false
+position = Vector2( 520.193, 266.15 )
+scale = Vector2( 1.09096, 1.02497 )
+texture = ExtResource( 11 )
+
+[node name="Panel3" type="Panel" parent="."]
+visible = false
+margin_left = 1.0
+margin_top = 522.0
+margin_right = 1029.0
+margin_bottom = 600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextEdit" type="Label" parent="Panel3"]
+visible = false
+anchor_bottom = 0.141
+margin_left = 17.0
+margin_top = 15.0
+margin_right = 1028.0
+margin_bottom = 89.002
+custom_fonts/font = ExtResource( 7 )
+text = "Each ark is controlled by AI, which helps people in their search for a new planet, 
+which would become a new haven for humanity."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton3" type="Button" parent="Panel3"]
+visible = false
+margin_left = 904.763
+margin_top = 21.8193
+margin_right = 985.763
+margin_bottom = 53.8193
+custom_fonts/font = ExtResource( 7 )
+text = "Play"
+[connection signal="button_down" from="VBoxContainer/Panel/VBoxContainer/VBoxContainer/Button" to="." method="advance"]
+[connection signal="pressed" from="Panel1/TextureButton1" to="." method="_on_TextureButton1_pressed"]
+[connection signal="pressed" from="Panel2/TextureButton2" to="." method="_on_TextureButton2_pressed"]
+[connection signal="pressed" from="Panel3/TextureButton3" to="." method="_on_TextureButton3_pressed"]
