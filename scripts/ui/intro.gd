@@ -28,8 +28,7 @@ export (NodePath) var button_path;
 #	button.text = 'Play';
 #	print('finish')
 
-
-func _on_TextureButton_pressed():
+func _on_TextureButton1_pressed():
 	$Sprite1.visible = false
 	$Panel1.visible = false
 	$Sprite2.visible = true
@@ -53,4 +52,4 @@ func _on_TextureButton2_pressed():
 
 
 func _on_TextureButton3_pressed():
-	
+	get_tree().change_scene("res://scenes/ui/main_scene.tscn")
