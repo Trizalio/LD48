@@ -88,6 +88,7 @@ func _ready():
 	pass # Replace with function body.
 
 func _process(delta):
+	
 	var star_objs =  star.get_children()
 	for star_related_obj in star_objs:
 #		print(" 123123")
@@ -132,6 +133,9 @@ func _input(event):
 		for planet in star_planets:
 			if planet is KinematicBody2D:
 				planet.close_passport()
+	elif event is InputEventMouseMotion:
+#		position = get_global_mouse_position()
+		$Camera2D.position = (event.position + star.position)/2
 
 func move_ship_to(move_to):
 #	if move_to not in space_obj_info_to_instanc :
