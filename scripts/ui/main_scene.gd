@@ -23,15 +23,16 @@ func _ready():
 
 #	print(screenWidth)
 #	print(screenHights)
-	star.init_planet("res://icon.png", screenWidth/2, screenHights/2, "tetetetet")
+	star.init_planet("res://icon.png", 0)
 	star.position = Vector2(screenWidth/2, screenHights/2) 
 #	self.add_child(start)
-	for i in range(1, my_random_number + 1):
+	for i in range(1, my_random_number):
 		print(i)
 #		var planet = load("res://scenes/ui/space_objects/planet.tscn")
 		var planet_ = load("res://scenes/ui/space_objects/planet.tscn")
 		var planet = planet_.instance()
-		planet.init_planet("res://icon.png", screenWidth/2 + i * 100, screenHights/2, "tetetetewwt")
+#		planet.init_planet("res://icon.png", screenWidth/2 + i * 100, screenHights/2, "tetetetewwt")
+		planet.init_planet("res://icon.png", i * 100)
 #		planet.position = Vector2(screenWidth/2 + i * 100, screenHights/2)
 		planet.position = Vector2(i * 100, 0)
 		planets.append(planet)
@@ -46,11 +47,21 @@ func _ready():
 	pass # Replace with function body.
 
 func _process(delta):
-	for planet in planets:
-		planet.move(delta)
-#		self.angle = fmod(self.angle + (self.rotation_speed * delta), 2 * PI)
-#		var offset = Vector2(sin(self.angle), cos(self.angle)) * (self._x_coord - self.screenWidth)
-#		move_and_slide(offset)
+	var star_planets =  star.get_children()
+	for planet in star_planets:
+		if planet is KinematicBody2D:
+#		planet.rotate_y(rotation_speed * delta)
+#			planet.rotation += rotation_speed * delta
+#		planet.move(delta)
+			var currnet_pos = planet.position
+#			print(currnet_pos)
+			planet.angle = fmod(planet.angle + (planet.rotation_speed * delta), 2 * PI)
+#			print(planet.angle)
+#			print(planet.radius)
+#			var pos = Vector2(sin(planet.angle) * currnet_pos[0], cos(planet.angle) * planet.radius)
+			var pos = Vector2(sin(planet.angle) * planet.radius, cos(planet.angle) * planet.radius)
+			planet.position = pos
+#			move_and_slide(offset)
 #		planet.rotation += rotation_speed * delta
 
 func _input(event):

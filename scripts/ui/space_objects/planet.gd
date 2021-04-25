@@ -3,7 +3,7 @@ extends KinematicBody2D
 #var sprite = Sprite.new()
 var radius = 0
 var angle = 0
-var rotation_speed = 0.01
+var rotation_speed = 0.2
 var _x_coord = 0
 var _y_coord = 0
 var got_pasport = false
@@ -22,7 +22,8 @@ func _ready():
 #	collision_shape.shape = rectangle_shape
 #	self.add_child(collision_shape)
 
-func init_planet(path_to_image, x,y,on_click_event):
+#func init_planet(path_to_image, x,y,on_click_event):
+func init_planet(path_to_image, _radius):
 #	print(" im here")
 #	radius = _radius
 #	var sprite = Sprite.new()
@@ -38,12 +39,11 @@ func init_planet(path_to_image, x,y,on_click_event):
 #	self.add_child(collision_shape)
 #	self.position = Vector2(_radius, 0)
 ##	var clickable = load("res://scripts/ui/space_objects/""clickable.gd")
-	_x_coord = x
-	_y_coord = y
+	radius = _radius
 	var clickable_ = load("res://scenes/ui/utils/clicable.tscn")
 	var clickable_inst = clickable_.instance()
 	clickable_inst.connect("clicked", self, "open_passport")
-	clickable_inst.init_clicable(on_click_event ,path_to_image, x, y)
+	clickable_inst.init_clicable(path_to_image)
 #	clickable_inst.position = Vector2(x, y)
 	self.add_child(clickable_inst)
 

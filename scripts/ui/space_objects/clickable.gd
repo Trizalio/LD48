@@ -11,12 +11,11 @@ func _ready():
 
 #export (String) var on_click_evevnt = "Click321"
 signal clicked
-func init_clicable(on_click_ivevnt, path_to_image, x, y ):
+func init_clicable(path_to_image):
 #	print(" wrtfffasdasdasdasdasdasdasd e e e e e e e e e")
 	var sprite = Sprite.new()
 	sprite.texture = load(path_to_image) # could use preload
 #	sprite.position = Vector2(x, y)
-	print(x, " ",  y)
 	self.add_child(sprite)
 	var rectangle_shape = RectangleShape2D.new()
 	rectangle_shape.extents = Vector2(32, 32)
