@@ -6,11 +6,58 @@ func _ready():
 func get_max_range():
 	return 5
 
+class PlanetType:
+	const terrestrial_planet: String = "Terrestrial planet"
+	const gas_giant: String = "Gas giant"
+	const ice_giant: String = "Ice giant"
+	const dwarf_planet: String = "Dwarf planet"
+
+class Planet:
+	var range_from_star: float
+	var name_: String
+	var type_name: String # PlanetType
+	var frame_seed: int
+	var gravity: float = -1
+	var temperature: float = -1
+	var water: float = -1
+	var atmosphere: float = -1
+	var resources: float = -1
+	var life: float = -1
+
+	func _init(_name: String, _range_from_star: float, _type_name: String):
+		name_ = _name
+		range_from_star = _range_from_star
+		type_name = _type_name
+		frame_seed = randi()
+
+
 class Star:
 	var location: Vector2
-	var sprite: String = "default"
+	var frame_seed: int
+	var terrestrial_planets: int = -1
+	var gas_giants: int = -1
+	var ice_giants: int = -1
+	var dwarf_planets: int = -1
+	
 	func _init(_location: Vector2):
 		location = _location
+		frame_seed = randi()
+		
+class SystemStar:
+	var name_: String
+	var frame_seed: int
+
+	func _init(_name: String, _frame_seed: int):
+		name_ = _name
+		frame_seed = _frame_seed
+		
+class StarSystem:
+	var star: SystemStar
+	var planets: Array
+	
+	func _init(_star: SystemStar, _planets: Array):
+		star = _star
+		planets = _planets
 
 var cell_location_to_star: Dictionary = {}
 
@@ -47,3 +94,38 @@ func generate_new_map():
 	cell_location_to_star[Vector2(0, 0)] = first_star
 	generate_stars_around_star(first_star)
 	return first_star
+
+func discover_star(star: Star):
+	star.terrestrial_planets = 1
+	star.gas_giants = 1
+	star.ice_giants = 1
+	star.dwarf_planets = 1
+
+var range_step = 100
+var range_deviation = 0.3 * range_step
+var _start_to_star_system: Dictionary = {}
+func get_star_system_info(star: Star) -> StarSystem:
+	if not _start_to_star_system.has(star):
+		
+		discover_star(star)
+		var system_star = SystemStar.new("star-" + str(star.frame_seed), star.frame_seed)
+		var planets: Array = []
+		var last_range: float = 0
+		for i in range(star.terrestrial_planets):
+			var name = "terrestrial_planet-" + str(star.frame_seed)
+			var planet_range = (len(planets) + 1) * range_step + rand_range(-range_deviation, range_deviation)
+			var planet = Planet.new(name, range_deviation, PlanetType.terrestrial_planet)
+			print('planet: ', planet)
+			planets.append(planet)
+		for i in range(star.gas_giants):
+			var name = "gas_giant-" + str(star.frame_seed)
+			var planet_range = (len(planets) + 1) * range_step + rand_range(-range_deviation, range_deviation)
+			var planet = Planet.new(name, range_deviation, PlanetType.gas_giant)
+			print('planet: ', planet)
+			planets.append(planet)
+#		star.discover()
+		print('planets: ', planets)
+		var star_system = StarSystem.new(system_star, planets)
+		print('star_system: ', star_system)
+		_start_to_star_system[star] = star_system
+	return _start_to_star_system[star]

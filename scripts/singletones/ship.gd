@@ -47,6 +47,7 @@ func new_game():
 	var first_star = StarMap.generate_new_map()
 	current_star = first_star
 	visited_stars = []
+#	StarMap.get_star_system_info(current_star)
 
 #var tex = preload("res://icon.png")
 
@@ -74,7 +75,7 @@ func new_game():
 func _ready():
 	new_game()
 #	render_stars()
-	
+
 #var sprite_to_star = {}
 #
 #func _input(event):
