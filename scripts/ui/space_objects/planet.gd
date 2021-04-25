@@ -54,7 +54,7 @@ func init_sapce_obj(kwargs, _radius, _objecy_type, _rotation_speed):
 	clickable_inst.connect("clicked", self, "open_passport")
 	var number_of_framse = clickable_inst.animate_sprite.get_sprite_frames().get_frame_count(kwargs["animation"])
 	print(number_of_framse)
-	var frame_number = kwargs["test"] % number_of_framse
+	var frame_number = kwargs["frame_seed"] % number_of_framse
 	clickable_inst.init_clicable(kwargs["animation"], frame_number)
 #	clickable_inst.position = Vector2(x, y)
 	self.add_child(clickable_inst)
@@ -63,10 +63,10 @@ func open_passport():
 	if not got_pasport:
 		var passport_ = load("res://scenes/ui/space_object_passport.tscn")
 		var passport = passport_.instance()
-		print(_x_coord, " ",  _y_coord)
+#		print(_x_coord, " ",  _y_coord)
 	#	passport.rect_global_position = Vector2(_x_coord, _y_coord)
 	#	passport.rect_position = Vector2(_x_coord, _y_coord)
-		print(" got ckicked")
+#		print(" got ckicked")
 		current_passport = passport
 		self.add_child(passport)
 		got_pasport = true

@@ -17,6 +17,8 @@ var star_map_singletone_preload= preload("res://scripts/singletones/star_map.gd"
 var screenWidth = ProjectSettings.get_setting("display/window/size/width")
 var screenHights = ProjectSettings.get_setting("display/window/size/height")
 var ship_inst
+var shipe_rotating_around 
+var space_obj_info_to_instanc = {}
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	rng.randomize()
@@ -29,34 +31,44 @@ func _ready():
 #	ship_singltone
 #	print(screenWidth)
 #	print(screenHights)
-	print("_______________________________")
+#	print("_______________________________")
 	var current_star_ = Ship.get_current_star()
-	print(current_star_)
+#	print(current_star_)
 	var star_info = StarMap.get_star_system_info(current_star_)
 #	print(a)
 #	for i in a: 
 #		print(i)
-	print("_______________________________")
-	var kwargs = {"test":1, "animation":"star"} 
+#	print("_______________________________")
+	var kwargs = {"frame_seed":star_info.star.frame_seed, "animation":"star"} 
+	kwargs["space_object_info"] = star_info
 	star.init_sapce_obj(kwargs, 0, "star", 0)
 	star.position = Vector2(screenWidth/2, screenHights/2) 
+	space_obj_info_to_instanc[star_info] = star
 	
-	kwargs = {"test":0, "animation":"spaceship"} 
+	
+	kwargs = {"frame_seed":0, "animation":"spaceship"} 
 	ship_inst = space_object_preload.instance()
-	ship_inst.init_sapce_obj(kwargs, screenWidth/12, "ship", 0.4)
+	ship_inst.init_sapce_obj(kwargs, screenWidth/8, "ship", 0.4)
 	star.add_child(ship_inst)
-	kwargs = {"test":2, "animation":"terrestrial planet"} 
+	shipe_rotating_around = star
+#	kwargs = {"test":2, "animation":"terrestrial planet"} 
+	var a 
 	for planet_info in star_info.planets:
 #		print(i)
 #		var planet = load("res://scenes/ui/space_objects/planet.tscn")
 #		var planet_ = load("res://scenes/ui/space_objects/planet.tscn")
 		var planet = space_object_preload.instance()
 		kwargs['animation'] = planet_info.type_name
-		print(planet_info.type_name)
-		kwargs['test'] = planet_info.frame_seed
-		print(kwargs['test'])
+#		print(planet_info.type_name)
+		kwargs['frame_seed'] = planet_info.frame_seed
+		kwargs['name'] = planet_info.name_
+		kwargs["space_object_info"] = planet_info
+		print(planet_info.range_from_star, " range")
+#		print(kwargs['test'])
 #		planet.init_sapce_obj("res://icon.png", screenWidth/2 + i * 100, screenHights/2, "tetetetewwt")
-		planet.init_sapce_obj(kwargs, planet_info.range_from_star, "planet", 0.005 * planet_info.range_from_star)
+		planet.init_sapce_obj(kwargs, planet_info.range_from_star, "planet", 0.0005 * planet_info.range_from_star)
+		space_obj_info_to_instanc[planet_info] = planet		
+#		a = planet_info
 #		kwargs = {"test":i, "animation":"gas giants"} 
 #		planet.position = Vector2(screenWidth/2 + i * 100, screenHights/2)
 #		planet.position = Vector2(i * 100, 0)
@@ -68,7 +80,11 @@ func _ready():
 #		planet.texture.Vector2(0, 0)
 		star.add_child(planet)
 	self.add_child(star)
-	
+#	for i in space_obj_info_to_instanc:
+#		print(i)
+#		print("___________________")
+#	self.move_ship_to(a)
+#	self.move_ship_to(star_info)
 	pass # Replace with function body.
 
 func _process(delta):
@@ -81,19 +97,32 @@ func _process(delta):
 #		planet.rotate_y(rotation_speed * delta)
 #			planet.rotation += rotation_speed * delta
 #		planet.move(delta)
-			var currnet_pos = star_related_obj.position
-#			print(currnet_pos)
-			star_related_obj.angle = fmod(star_related_obj.angle +
-			 (star_related_obj.rotation_speed * delta), 2 * PI)
-#			print(planet.angle)
-#			print(planet.radius)
-#			var pos = Vector2(sin(planet.angle) * currnet_pos[0], cos(planet.angle) * planet.radius)
-			var pos = Vector2(sin(star_related_obj.angle) * star_related_obj.radius,
-			 cos(star_related_obj.angle) * star_related_obj.radius)
-			star_related_obj.position = pos
+			self.rotate_obj(star_related_obj, delta)
+			var planet_related =  star_related_obj.get_children()
+			if ship_inst in planet_related:
+				self.rotate_obj(ship_inst, delta)
+#			var currnet_pos = star_related_obj.position
+##			print(currnet_pos)
+#			star_related_obj.angle = fmod(star_related_obj.angle +
+#			 (star_related_obj.rotation_speed * delta), 2 * PI)
+#			var pos = Vector2(sin(star_related_obj.angle) * star_related_obj.radius,
+#			 cos(star_related_obj.angle) * star_related_obj.radius)
+#			star_related_obj.position = pos
 #			move_and_slide(offset)
 #		planet.rotation += rotation_speed * delta
 
+#sr_arf mejdi zvezdoi i mishkoi
+func rotate_obj(related_obj, delta):
+			var currnet_pos = related_obj.position
+#			print(currnet_pos)
+			related_obj.angle = fmod(related_obj.angle +
+			 (related_obj.rotation_speed * delta), 2 * PI)
+#			print(planet.angle)
+#			print(planet.radius)
+#			var pos = Vector2(sin(planet.angle) * currnet_pos[0], cos(planet.angle) * planet.radius)
+			var pos = Vector2(sin(related_obj.angle) * related_obj.radius,
+			 cos(related_obj.angle) * related_obj.radius)
+			related_obj.position = pos
 func _input(event):
 	if event is InputEventMouseButton \
 	and event.button_index == BUTTON_LEFT \
@@ -104,6 +133,15 @@ func _input(event):
 			if planet is KinematicBody2D:
 				planet.close_passport()
 
+func move_ship_to(move_to):
+#	if move_to not in space_obj_info_to_instanc :
+#		print("aaiaiiai")
+	print("moving to: " , move_to)
+	shipe_rotating_around.remove_child(ship_inst)
+	var inst = space_obj_info_to_instanc[move_to]
+	inst.add_child(ship_inst)
+	shipe_rotating_around = inst
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

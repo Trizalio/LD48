@@ -117,13 +117,13 @@ func get_star_system_info(star: Star) -> StarSystem:
 		for i in range(star.terrestrial_planets):
 			var name = "terrestrial_planet-" + str(star.frame_seed)
 			var planet_range = (len(planets) + 1) * range_step + rand_range(-range_deviation, range_deviation)
-			var planet = Planet.new(name, range_deviation, PlanetType.terrestrial_planet)
+			var planet = Planet.new(name, planet_range, PlanetType.terrestrial_planet)
 			print('planet: ', planet)
 			planets.append(planet)
 		for i in range(star.gas_giants):
 			var name = "gas_giant-" + str(star.frame_seed)
 			var planet_range = (len(planets) + 1) * range_step + rand_range(-range_deviation, range_deviation)
-			var planet = Planet.new(name, range_deviation, PlanetType.gas_giant)
+			var planet = Planet.new(name, planet_range, PlanetType.gas_giant)
 			print('planet: ', planet)
 			planets.append(planet)
 #		star.discover()
