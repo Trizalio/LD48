@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/ui/utils/clicable.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/ui/space_objects/planet.gd" type="Script" id=2]
+
+[node name="KinematicBody2D" type="KinematicBody2D"]
+script = ExtResource( 2 )
+
+[node name="Clikable" parent="." instance=ExtResource( 1 )]
+position = Vector2( 863.412, 458.903 )

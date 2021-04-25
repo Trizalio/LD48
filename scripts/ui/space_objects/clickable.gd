@@ -1,0 +1,59 @@
+extends Area2D
+
+#export (float) var rotation_speed = 1.5
+#var direction = Vector2(1,0)
+#var screenWidth = ProjectSettings.get_setting("display/window/size/width")
+#var velocity = Vector2()
+#var rotation_dir = 0
+func _ready():
+	print(" wrtf")
+
+export (String) var on_click_evevnt = "Click321"
+
+func init_clicable(on_click_ivevnt, path_to_image, x, y ):
+	print(" wrtfffasdasdasdasdasdasdasd e e e e e e e e e")
+	var sprite = Sprite.new()
+	sprite.texture = load(path_to_image) # could use preload
+	sprite.position = Vector2(x, y)
+	self.add_child(sprite)
+	var rectangle_shape = RectangleShape2D.new()
+	rectangle_shape.extents = Vector2(32, 32)
+#	rectangle_shape.position = Vector2(_radius, 0)
+	var collision_shape = CollisionShape2D.new()
+	collision_shape.shape = rectangle_shape
+	collision_shape.position = Vector2(x, y)
+	self.add_child(collision_shape)
+	self.position = Vector2(x, y)
+	on_click_evevnt = on_click_ivevnt
+	print(on_click_evevnt)
+#	var clickable = load("res://scripts/
+
+
+func _input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton \
+	and event.button_index == BUTTON_LEFT \
+	and event.is_pressed():
+		self.on_click()
+
+func on_click():
+	print(on_click_evevnt)
+
+#func _process(delta):
+#	position += direction
+##	rotation += rotation_dir * rotation_speed * delta
+#	if position.x >= screenWidth or position.x <= 0:
+#		direction = -(direction)
+
+
+#func _physics_process(delta):
+#    rotation += rotation_dir * rotation_speed * delta
+#    velocity = move_and_slide(velocity)
+#func _ready():
+#    var sprite = Sprite.new()
+#    sprite.texture = load("res://icon.png") # could use preload
+#    self.add_child(sprite)
+#    var rectangle_shape = RectangleShape2D.new()
+#    rectangle_shape.extents = Vector2(32, 32)
+#    var collision_shape = CollisionShape2D.new()
+#    collision_shape.shape = rectangle_shape
+#    self.add_child(collision_shape)
