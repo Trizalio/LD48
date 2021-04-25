@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 
 # Declare member variables here. Examples:
@@ -88,7 +88,7 @@ func _ready():
 	pass # Replace with function body.
 
 func _process(delta):
-	
+	$Camera2D.position = (get_viewport().get_mouse_position() + ship_inst.position)/2
 	var star_objs =  star.get_children()
 	for star_related_obj in star_objs:
 #		print(" 123123")
@@ -133,9 +133,9 @@ func _input(event):
 		for planet in star_planets:
 			if planet is KinematicBody2D:
 				planet.close_passport()
-	elif event is InputEventMouseMotion:
+#	elif event is InputEventMouseMotion:
 #		position = get_global_mouse_position()
-		$Camera2D.position = (event.position + star.position)/2
+#	$Camera2D.position = (event.position + ship_inst.position)/2
 
 func move_ship_to(move_to):
 #	if move_to not in space_obj_info_to_instanc :
@@ -148,4 +148,5 @@ func move_ship_to(move_to):
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
+
 #	pass
