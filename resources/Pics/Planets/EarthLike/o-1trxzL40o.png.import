@@ -1,0 +1,34 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/o-1trxzL40o.png-e889d6a1f45f6b731705a9c3692c439a.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://resources/Pics/Planets/EarthLike/o-1trxzL40o.png"
+dest_files=[ "res://.import/o-1trxzL40o.png-e889d6a1f45f6b731705a9c3692c439a.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0
