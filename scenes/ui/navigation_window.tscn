@@ -1,0 +1,81 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/images/star.png" type="Texture" id=1]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="Panel"]
+position = Vector2( 95.4594, 120.208 )
+scale = Vector2( 0.563583, 0.480718 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 103, 104, 50, 50 )
+region_filter_clip = true
+
+[node name="Sprite2" type="Sprite" parent="Panel"]
+position = Vector2( 208.459, 179.208 )
+scale = Vector2( 0.563583, 0.480718 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 103, 104, 50, 50 )
+region_filter_clip = true
+
+[node name="Sprite3" type="Sprite" parent="Panel"]
+position = Vector2( 334.459, 95.2082 )
+scale = Vector2( 0.563583, 0.480718 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 103, 104, 50, 50 )
+region_filter_clip = true
+
+[node name="Sprite4" type="Sprite" parent="Panel"]
+position = Vector2( 344.459, 204.208 )
+scale = Vector2( 0.563583, 0.480718 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 103, 104, 50, 50 )
+region_filter_clip = true
+
+[node name="Sprite5" type="Sprite" parent="Panel"]
+position = Vector2( 452.459, 155.208 )
+scale = Vector2( 0.563583, 0.480718 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 103, 104, 50, 50 )
+region_filter_clip = true
+
+[node name="Sprite6" type="Sprite" parent="Panel"]
+position = Vector2( 517.459, 330.208 )
+scale = Vector2( 0.563583, 0.480718 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 103, 104, 50, 50 )
+region_filter_clip = true
+
+[node name="Sprite7" type="Sprite" parent="Panel"]
+position = Vector2( 676.325, 460.531 )
+scale = Vector2( 0.563583, 0.480718 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 103, 104, 50, 50 )
+region_filter_clip = true
+
+[node name="Sprite8" type="Sprite" parent="Panel"]
+position = Vector2( 808.178, 280.57 )
+scale = Vector2( 0.563583, 0.480718 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 103, 104, 50, 50 )
+region_filter_clip = true
