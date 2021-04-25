@@ -1,5 +1,5 @@
 extends Node2D
-var star_scene = preload("res://scenes/ui/navigation_window_star.tscn");
+var star_scene = preload("res://scenes/ui/navigation_window/navigation_window_star.tscn");
 
 const STAR_STATUS = {
 	CURRENT = "#FF98FB98",
