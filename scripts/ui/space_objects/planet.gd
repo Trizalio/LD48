@@ -6,6 +6,7 @@ var angle = 0
 var rotation_speed = 0.2
 var _x_coord = 0
 var _y_coord = 0
+var rand_int_start_pos_offset = 0 
 var got_pasport = false
 var passport_ = preload("res://scenes/ui/space_object_passport.tscn")
 var all_kwargs = {}
@@ -55,6 +56,7 @@ func init_sapce_obj(kwargs, _radius, _objecy_type, _rotation_speed):
 	radius = _radius
 	var clickable_ = load("res://scenes/ui/utils/clicable.tscn")
 	var clickable_inst = clickable_.instance()
+	rand_int_start_pos_offset = kwargs["rand_int_start_pos_offset"]
 	all_kwargs = kwargs
 	clickable_inst.connect("clicked", self, "open_passport")
 	var number_of_framse = clickable_inst.animate_sprite.get_sprite_frames().get_frame_count(kwargs["animation"])
