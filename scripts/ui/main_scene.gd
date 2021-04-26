@@ -41,6 +41,7 @@ func _ready():
 	var kwargs = {"frame_seed":star_info.star.frame_seed, "animation":"star"} 
 	kwargs["space_object_info"] = star_info
 	star.init_sapce_obj(kwargs, 0, "star", 0)
+#	star.set_scale(Vector2(0.4,0.4))
 	star.position = Vector2(screenWidth/2, screenHights/2) 
 	space_obj_info_to_instanc[star_info] = star
 	
@@ -70,6 +71,7 @@ func _ready():
 		planet.init_sapce_obj(kwargs, planet_info.range_from_star, "planet", 0.0005 * planet_info.range_from_star)
 		space_obj_info_to_instanc[planet_info] = planet		
 		planet.connect("close_all",self, "close_passports")
+		planet.set_scale(Vector2(0.4,0.4))
 #		a = planet_info
 #		kwargs = {"test":i, "animation":"gas giants"} 
 #		planet.position = Vector2(screenWidth/2 + i * 100, screenHights/2)
@@ -98,6 +100,7 @@ func close_passports():
 #				pass
 				planet.close_passport()
 	
+
 func _process(delta):
 	$Camera2D.position = (get_viewport().get_mouse_position() + ship_inst.global_position)/2
 #	print(global_position())
