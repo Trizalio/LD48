@@ -127,13 +127,17 @@ func _input(event):
 	if event is InputEventMouseButton \
 	and event.button_index == BUTTON_LEFT \
 	and event.is_pressed():
-		close_ship_menu()
-		draw_ship_menu()
+		var evLocal = make_input_local(event)
+#		if !Rect2(Vector2(0,0),rect_size).has_point(evLocal.position):
+#			print(" nothing clicked")
+#		close_ship_menu()
+#		draw_ship_menu()
 		star.close_passport()
 		var star_planets =  star.get_children()
 		for planet in star_planets:
 			if planet is KinematicBody2D:
-				planet.close_passport()
+				pass
+#				planet.close_passport()
 #	elif event is InputEventMouseMotion:
 #		position = get_global_mouse_position()
 #	$Camera2D.position = (event.position + ship_inst.position)/2
@@ -150,21 +154,21 @@ func move_ship_to(move_to):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 
-var circular_menu_class = preload("res://scenes/circular_menu.tscn")
-var ship_menu = null
+#var circular_menu_class = preload("res://scenes/circular_menu.tscn")
+#var ship_menu = null
+#
+#func close_ship_menu():
+#	if ship_menu != null:
+#		print('close ship_menu')
+#		ship_menu.hide()
+#		ship_menu = null
 
-func close_ship_menu():
-	if ship_menu != null:
-		print('close ship_menu')
-		ship_menu.hide()
-		ship_menu = null
-
-func draw_ship_menu():
-	if ship_menu != null:
-		print('assert failed: attempt to create new ship_menu, while old exists; close old')
-		close_ship_menu()
-	var actions = Ship.get_actions()
-	ship_menu = circular_menu_class.instance()
-	# connect menu signal to Ship.do_action
-	ship_menu.init(actions, 1)
-	ship_inst.add_child(ship_menu)
+#func draw_ship_menu():
+#	if ship_menu != null:
+#		print('assert failed: attempt to create new ship_menu, while old exists; close old')
+#		close_ship_menu()
+#	var actions = Ship.get_actions()
+#	ship_menu = circular_menu_class.instance()
+#	# connect menu signal to Ship.do_action
+#	ship_menu.init(actions, 1)
+#	ship_inst.add_child(ship_menu)

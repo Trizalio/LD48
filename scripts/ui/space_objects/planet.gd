@@ -7,6 +7,8 @@ var rotation_speed = 0.2
 var _x_coord = 0
 var _y_coord = 0
 var got_pasport = false
+var passport_ = preload("res://scenes/ui/space_object_passport.tscn")
+var all_kwargs = {}
 enum OBGECT_TYPES{
   star,
   ship,
@@ -51,32 +53,104 @@ func init_sapce_obj(kwargs, _radius, _objecy_type, _rotation_speed):
 	radius = _radius
 	var clickable_ = load("res://scenes/ui/utils/clicable.tscn")
 	var clickable_inst = clickable_.instance()
+	all_kwargs = kwargs
 	clickable_inst.connect("clicked", self, "open_passport")
 	var number_of_framse = clickable_inst.animate_sprite.get_sprite_frames().get_frame_count(kwargs["animation"])
 	print(number_of_framse)
+	
 	var frame_number = kwargs["frame_seed"] % number_of_framse
 	clickable_inst.init_clicable(kwargs["animation"], frame_number)
 #	clickable_inst.position = Vector2(x, y)
 	self.add_child(clickable_inst)
 
 func open_passport():
+	print("in open_passport")
 	if not got_pasport:
-		var passport_ = load("res://scenes/ui/space_object_passport.tscn")
-		var passport = passport_.instance()
-#		print(_x_coord, " ",  _y_coord)
-	#	passport.rect_global_position = Vector2(_x_coord, _y_coord)
-	#	passport.rect_position = Vector2(_x_coord, _y_coord)
-#		print(" got ckicked")
-		current_passport = passport
-		self.add_child(passport)
+		if objecy_type == "ship":
+			draw_ship_menu()
+		elif objecy_type == "planet":
+			draw_planet_menu()
+		else:
+			var passport = passport_.instance()
+	#		print(_x_coord, " ",  _y_coord)
+		#	passport.rect_global_position = Vector2(_x_coord, _y_coord)
+		#	passport.rect_position = Vector2(_x_coord, _y_coord)
+	#		print(" got ckicked")
+			current_passport = passport
+			self.add_child(passport)
 		got_pasport = true
 		
 		
 func close_passport():
+
 	if got_pasport:
-		self.remove_child(current_passport)
-		got_pasport = false
-#	emit_signal("clicked_1")
+		if objecy_type == "ship":
+			close_ship_menu()
+		elif objecy_type == "planet":
+			close_planet_menu()
+		else:
+			self.remove_child(current_passport)
+	got_pasport = false
+
+
+var circular_menu_class = preload("res://scenes/circular_menu.tscn")
+var ship_menu = null
+var planet_menu = null
+
+
+func close_ship_menu():
+	if ship_menu != null:
+		print('close ship_menu')
+		ship_menu.hide()
+		ship_menu = null
+
+
+func draw_ship_menu():
+	if ship_menu != null:
+		print('assert failed: attempt to create new ship_menu, while old exists; close old')
+		close_ship_menu()
+	var actions = Ship.get_actions()
+	ship_menu = circular_menu_class.instance()
+	ship_menu.init(actions, 1)
+	self.add_child(ship_menu)
+	
+	
+func draw_planet_menu():
+	if planet_menu != null:
+		print('assert failed: attempt to create new ship_menu, while old exists; close old')
+		close_ship_menu()
+	var space_object_info = all_kwargs["space_object_info"]
+#	var actions = Ship.get_actions()
+	planet_menu = circular_menu_class.instance()
+	var actions = ["name: " + String(space_object_info.name_)
+	, "gravity: " + String(space_object_info.gravity)
+	,"temperature: " + String(space_object_info.temperature)
+	,"water: " + String(space_object_info.water)
+	,"atmosphere:" +  String(space_object_info.atmosphere)
+	,"resources: " + String(space_object_info.resources)
+	,"life: " + String(space_object_info.life)
+	, "move"
+	]
+	
+#	name_: String
+#	type_name: String # PlanetType
+#	frame_seed: int
+#	var gravity: float = -1
+#	var temperature: float = -1
+#	var water: float = -1
+#	var atmosphere: float = -1
+#	var resources: float = -1
+#	var life: float = -1
+	planet_menu.init(actions, 1, true)
+	self.add_child(planet_menu)
+	
+func close_planet_menu():
+	if planet_menu != null:
+		print('close ship_menu')
+		planet_menu.hide()
+		planet_menu = null
+
+
 #class PlanetInfo:
 #	var type: int = 0 
 #	var know_info: Array = []
