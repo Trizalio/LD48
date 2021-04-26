@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/AIgreat.wav-aaef8e8c825d8ef59ae3611d956b179f.sample"
+
+[deps]
+
+source_file="res://resources/Sounds/AIgreat.wav"
+dest_files=[ "res://.import/AIgreat.wav-aaef8e8c825d8ef59ae3611d956b179f.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

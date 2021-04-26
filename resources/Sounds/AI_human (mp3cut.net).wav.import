@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/AI_human (mp3cut.net).wav-c460b60a6fb26e348b8898ea594ace92.sample"
+
+[deps]
+
+source_file="res://resources/Sounds/AI_human (mp3cut.net).wav"
+dest_files=[ "res://.import/AI_human (mp3cut.net).wav-c460b60a6fb26e348b8898ea594ace92.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
