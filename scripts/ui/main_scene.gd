@@ -171,6 +171,7 @@ func _input(event):
 #		draw_ship_menu()
 		star.close_passport()
 		var star_planets =  star.get_children()
+		ship_inst.close_passport()
 		for planet in star_planets:
 			if planet is KinematicBody2D:
 #				pass
