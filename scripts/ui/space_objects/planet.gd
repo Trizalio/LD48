@@ -145,7 +145,7 @@ func draw_planet_menu():
 	,get_str_or_none("atmosphere:" , space_object_info.atmosphere)
 	,get_str_or_none("resources: ", space_object_info.resources)
 	,get_str_or_none("life: " ,space_object_info.life)
-	,"type_name:  " ,space_object_info.type_name
+#	,"type_name:  " ,space_object_info.type_name
 	
 	]
 	

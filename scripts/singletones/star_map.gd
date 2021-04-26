@@ -106,7 +106,7 @@ func discover_star(star: Star):
 	star.ice_giants = 1
 	star.dwarf_planets = 1
 
-var range_step = 250
+var range_step = 160
 var range_deviation = 0.2 * range_step
 var _start_to_star_system: Dictionary = {}
 func get_star_system_info(star: Star) -> StarSystem:
