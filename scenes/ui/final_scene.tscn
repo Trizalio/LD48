@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://resources/Pics/Final_Scene/Sucsessful 0.jpg" type="Texture" id=1]
 [ext_resource path="res://resources/fonts/bitwise.tres" type="DynamicFont" id=2]
 [ext_resource path="res://resources/Pics/Final_Scene/Sucsessful-20.png" type="Texture" id=3]
+[ext_resource path="res://resources/Sounds/AIgreat.wav" type="AudioStream" id=4]
 [ext_resource path="res://resources/Pics/Final_Scene/Sucsessful-50.jpg" type="Texture" id=5]
 [ext_resource path="res://resources/Pics/Icons/Next1.png" type="Texture" id=6]
 [ext_resource path="res://resources/Pics/Final_Scene/village.jpg" type="Texture" id=7]
@@ -12,11 +13,39 @@
 [ext_resource path="res://resources/Pics/Final_Scene/deadAI.jpg" type="Texture" id=11]
 [ext_resource path="res://resources/Pics/Final_Scene/AIgreat.jpg" type="Texture" id=12]
 [ext_resource path="res://resources/Pics/Final_Scene/deadAIself.jpg" type="Texture" id=13]
+[ext_resource path="res://resources/Sounds/GoodEnd.wav" type="AudioStream" id=14]
+[ext_resource path="res://resources/Sounds/50-50end (mp3cut.net).wav" type="AudioStream" id=15]
+[ext_resource path="res://resources/Pics/Final_Scene/potential.jpg" type="Texture" id=16]
+[ext_resource path="res://resources/Sounds/BadEnd.wav" type="AudioStream" id=17]
+[ext_resource path="res://resources/Sounds/AI_human (mp3cut.net).wav" type="AudioStream" id=18]
+[ext_resource path="res://resources/Sounds/aidead.mp3" type="AudioStream" id=19]
 
 [node name="Node2D" type="Node2D"]
 
-[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+[node name="AI_human2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 18 )
 volume_db = -6.0
+autoplay = true
+
+[node name="AIdead+ColonystsDead" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 19 )
+autoplay = true
+
+[node name="GoodEnd" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
+autoplay = true
+
+[node name="50-50End" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 15 )
+autoplay = true
+
+[node name="BadEnd-50" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 17 )
+volume_db = -6.0
+autoplay = true
+
+[node name="AI_great+AIhuman" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
 autoplay = true
 
 [node name="Sucsessful_0" type="Sprite" parent="."]
@@ -61,6 +90,7 @@ __meta__ = {
 }
 
 [node name="Sucsessful<20" type="Sprite" parent="."]
+visible = false
 position = Vector2( 518.761, 294.426 )
 scale = Vector2( 0.868815, 0.868815 )
 texture = ExtResource( 3 )
@@ -141,10 +171,11 @@ margin_bottom = 53.8193
 custom_fonts/font = ExtResource( 2 )
 text = "Play"
 
-[node name="Sucsessful+50" type="Sprite" parent="."]
+[node name="Sucsessful+51_village" type="Sprite" parent="."]
 visible = false
-position = Vector2( 454.938, 303.87 )
-scale = Vector2( 0.601775, 0.565375 )
+position = Vector2( 519.22, 306.701 )
+scale = Vector2( 0.882701, 0.829308 )
+texture = ExtResource( 7 )
 
 [node name="Panel7" type="Panel" parent="."]
 visible = false
@@ -179,11 +210,11 @@ margin_bottom = 53.8193
 custom_fonts/font = ExtResource( 2 )
 text = "Play"
 
-[node name="Sucsessful+51_village" type="Sprite" parent="."]
+[node name="Sucsessful+50" type="Sprite" parent="."]
 visible = false
-position = Vector2( 519.22, 306.701 )
-scale = Vector2( 0.882701, 0.829308 )
-texture = ExtResource( 7 )
+position = Vector2( 495.012, 298.213 )
+scale = Vector2( 0.715506, 0.672227 )
+texture = ExtResource( 16 )
 
 [node name="Panel8" type="Panel" parent="."]
 visible = false
@@ -370,7 +401,6 @@ custom_fonts/font = ExtResource( 2 )
 text = "Play"
 
 [node name="AIgreat" type="Sprite" parent="."]
-visible = false
 position = Vector2( 515.911, 233.972 )
 scale = Vector2( 0.796426, 0.748252 )
 texture = ExtResource( 12 )
