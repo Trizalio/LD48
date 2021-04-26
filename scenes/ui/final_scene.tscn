@@ -422,11 +422,13 @@ __meta__ = {
 }
 
 [node name="AIgreat" type="Sprite" parent="."]
+visible = false
 position = Vector2( 515.911, 233.972 )
 scale = Vector2( 0.796426, 0.748252 )
 texture = ExtResource( 12 )
 
 [node name="Panel13" type="Panel" parent="."]
+visible = false
 margin_left = -2.0
 margin_top = 522.0
 margin_right = 1029.0

@@ -153,9 +153,9 @@ func finish_game(planet_info):
 	elif (success_result < 0.6):
 		root._on_TextureButton3_pressed(); #bad
 	elif (success_result < 0.8):
-		root._on_TextureButton3_pressed(); #50/50
+		root._on_TextureButton5_pressed(); #50/50
 	elif (success_result <= 1):
-		root._on_TextureButton3_pressed(); #good
+		root._on_TextureButton7_pressed(); #good
 
 func get_star_path():
 	return visited_stars
@@ -183,5 +183,5 @@ func get_current_star():
 
 func notification_result(text, result):
 	print('notification_result: ', text, " result:", result)
-	if text == colonisation_text and result == 1:
+	if text == colonisation_text and result == 0:
 		finish_game(current_object)
