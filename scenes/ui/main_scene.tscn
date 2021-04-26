@@ -70,3 +70,5 @@ autoplay = "Space"
 playback_speed = 0.5
 method_call_mode = 1
 anims/Space = SubResource( 1 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
