@@ -20,9 +20,19 @@ var shipe_rotating_around
 var space_obj_info_to_instanc = {}
 # Called when the node enters the scene tree for the first time.
 
+var event_window_class = preload('res://scenes/ui/event_window.tscn') 
+
+func render_notification(description: String, choices: Array):
+	print('render_notification')
+	var event_window = event_window_class.instance()
+	$CanvasLayer.add_child(event_window)
+	event_window.set_description(description)
+	event_window.set_choices(choices)
+	
 func _ready():
 #	move_ship_to
 	Ship.connect("move_ship_to", self, "move_ship_to")
+	Ship.connect("notification", self, "render_notification")
 	rng.randomize()
 #	var my_random_number = rng.randi_range(2, 5)
 #	my_random_number = 0

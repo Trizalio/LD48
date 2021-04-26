@@ -24,6 +24,7 @@ var current_star = null
 var visited_stars = []
 
 signal move_ship_to (planet)
+signal notification (description, choices)
 
 func new_game():
 	print('Ship.new_game start')
@@ -93,17 +94,25 @@ var actions = []
 func get_actions() -> Array:
 #	actions.append('jump' + str(len(actions)))
 #	return ['Jump', 'Recicle colonists', 'scan stars', 'scan planet', "colonise"]
-	actions = ['jump']
+	actions = ['jump', "notification"]
+	if current_object != null:
+		actions.append('scan planet')
 	return actions
 
-var star_map_class = preload('res://scenes/ui/navigation_window/navigation_window.tscn') 
+var star_map_class = preload('res://scenes/ui/event_window.tscn') 
 	
 func do_action(action: String, source=null):
 	print('do_action: ', action, ' by: ', source)
 	if action == 'jump':
 		SceneChanger.goto_scene('res://scenes/ui/navigation_window/navigation_window.tscn')
-	if action == 'move':
-		pass
+	if action == 'notification':
+		emit_signal("notification", "test", ["1", "2", "3"])
+		
+	if action == 'scan planet':
+		if current_object != null:
+			current_object.scan()
+		
+#		SceneChanger.current_scene.get_node('CanvasLayer').add_child(star_map_class.instance())
 
 var current_object = null
 func move_ship_to(planet_info):

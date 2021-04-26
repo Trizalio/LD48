@@ -11,11 +11,11 @@ func _ready():
 	_description_label = get_node(description_path);
 	_choices_container = get_node(choices_container_path);
 	# set_description("DESCRIPTION");
-	# set_choices(["FIRST", "SECOND", "THIRD"]);
+#	set_choices(["FIRST", "SECOND", "THIRD"]);
 
 func set_description(value: String):
-		_description_label.text = value;
-		
+	_description_label.text = value;
+
 func set_choices(value: Array):
 	for i in range(value.size()):
 		var button: Button = Button.new();
@@ -27,4 +27,5 @@ func set_choices(value: Array):
 		_choices_container.add_child(button);
 
 func on_choice_click(index: int):
+	Ship.notification_result(index)
 	print(index);

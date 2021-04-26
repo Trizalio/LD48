@@ -31,8 +31,13 @@ class Planet:
 		name_ = _name
 		range_from_star = _range_from_star
 		type_name = _type_name
+		gravity = rand_range(-1, 1)
+		temperature = rand_range(-1, 1)
 		frame_seed = randi()
-
+	
+	func scan():
+		water = rand_range(-1, 1)
+		atmosphere = rand_range(-1, 1)
 
 class Star:
 	var name_: String
