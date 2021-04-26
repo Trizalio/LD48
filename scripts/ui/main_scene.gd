@@ -62,18 +62,21 @@ func _ready():
 	
 	kwargs = {"frame_seed":0, "animation":"spaceship", "rand_int_start_pos_offset": 0} 
 	ship_inst = space_object_preload.instance()
-	ship_inst.init_sapce_obj(kwargs, screenWidth/8, "ship", 0.4)
+	ship_inst.init_sapce_obj(kwargs, screenWidth/8, "ship", 0.04)
 	star.add_child(ship_inst)
 	shipe_rotating_around = star
 	ship_inst.connect("close_all",self, "close_passports")
 	star.connect("close_all",self, "close_passports")
+#	ship_inst.set_scale(Vector2(1.5, 1.5))
 #	kwargs = {"test":2, "animation":"terrestrial planet"} 
 	var a 
 	for planet_info in star_info.planets:
+
 #		print(i)
 #		var planet = load("res://scenes/ui/space_objects/planet.tscn")
 #		var planet_ = load("res://scenes/ui/space_objects/planet.tscn")
 		var planet = space_object_preload.instance()
+		kwargs = {}
 		kwargs['animation'] = planet_info.type_name
 #		print(planet_info.type_name)
 		kwargs['frame_seed'] = planet_info.frame_seed
@@ -83,7 +86,7 @@ func _ready():
 		print(planet_info.range_from_star, " range")
 #		print(kwargs['test'])
 #		planet.init_sapce_obj("res://icon.png", screenWidth/2 + i * 100, screenHights/2, "tetetetewwt")
-		planet.init_sapce_obj(kwargs, planet_info.range_from_star, "planet", 0.0005 * planet_info.range_from_star)
+		planet.init_sapce_obj(kwargs, planet_info.range_from_star, "planet", 0.00005 * planet_info.range_from_star)
 		space_obj_info_to_instanc[planet_info] = planet		
 		planet.connect("close_all",self, "close_passports")
 #		planet.position = Vector2(planet_info.range_from_star, planet_info.range_from_star)
@@ -184,9 +187,10 @@ func move_ship_to(move_to):
 	print('main_scene.move_ship_to', move_to.type_name)
 #	if move_to not in space_obj_info_to_instanc :
 #		print("aaiaiiai")
-	print("moving to: " , move_to)
+	print("moving to: " , move_to.name_)
 	shipe_rotating_around.remove_child(ship_inst)
 	var inst = space_obj_info_to_instanc[move_to]
+	ship_inst.set_scale(Vector2(2.3, 2.3))
 	inst.add_child(ship_inst)
 	shipe_rotating_around = inst
 	

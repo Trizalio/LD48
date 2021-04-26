@@ -34,6 +34,8 @@ func _ready():
 
 	for action in actions:
 		var button = Button.new()
+		if action == "move":
+			button.modulate = Color( 0, 0.39, 0, 1 )
 		button.text = action
 		# reemit button pressed as new action_clicked signal
 #		var clickable_inst = clickable_.instance()
