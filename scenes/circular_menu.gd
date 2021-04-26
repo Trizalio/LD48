@@ -13,7 +13,7 @@ var duration = null
 var is_planet = false
 func init(_actions: Array, _duration: float, _is_planet:bool = false):
 	actions = _actions
-	duration = _duration
+	duration = 0.5
 	is_planet = _is_planet
 
 func close_menu():
