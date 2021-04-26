@@ -42,6 +42,7 @@ func _ready():
 		var star = star_scene.instance();
 		star.scale = Vector2(0.2, 0.2);
 		add_child(star);
+		star.set_data(star_data);
 		if reachable_stars.has(star_data):
 			star.set_color(STAR_STATUS.REACHABLE);
 		else:
