@@ -165,7 +165,7 @@ func close_planet_menu():
 
 func get_str_or_none(name_, value):
 	if value == -1:
-		return "Unknown"
+		return name_ + ": unknown"
 	else:
 		return name_ + ": " + String(value)
 	pass
