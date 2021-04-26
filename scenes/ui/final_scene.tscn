@@ -78,6 +78,7 @@ __meta__ = {
 }
 
 [node name="TextureButton1" type="TextureButton" parent="Panel4"]
+visible = false
 margin_left = 834.917
 margin_top = -262.325
 margin_right = 915.917
@@ -190,6 +191,7 @@ __meta__ = {
 }
 
 [node name="TextEdit" type="Label" parent="Panel7"]
+visible = false
 anchor_bottom = 0.141
 margin_left = 9.92889
 margin_top = 13.5858
@@ -204,6 +206,7 @@ __meta__ = {
 }
 
 [node name="TextureButton4" type="Button" parent="Panel7"]
+visible = false
 margin_left = 903.349
 margin_top = -61.6193
 margin_right = 984.349
@@ -231,6 +234,7 @@ __meta__ = {
 }
 
 [node name="TextEdit" type="Label" parent="Panel8"]
+visible = false
 anchor_bottom = 0.141
 margin_left = -107.451
 margin_top = 4.51471
@@ -246,6 +250,7 @@ __meta__ = {
 }
 
 [node name="TextureButton5" type="Button" parent="Panel8"]
+visible = false
 margin_left = 904.763
 margin_top = 21.8193
 margin_right = 985.763
@@ -316,6 +321,7 @@ __meta__ = {
 }
 
 [node name="TextEdit" type="Label" parent="Panel10"]
+visible = false
 anchor_bottom = 0.141
 margin_left = 51.0178
 margin_top = 23.8195
@@ -328,6 +334,7 @@ __meta__ = {
 }
 
 [node name="TextureButton7" type="Button" parent="Panel10"]
+visible = false
 margin_left = 912.323
 margin_top = -63.8554
 margin_right = 993.323
@@ -355,6 +362,7 @@ __meta__ = {
 }
 
 [node name="TextEdit" type="Label" parent="Panel11"]
+visible = false
 anchor_bottom = 0.141
 margin_left = 6.92065
 margin_top = 15.4802
@@ -369,6 +377,7 @@ __meta__ = {
 }
 
 [node name="TextureButton8" type="Button" parent="Panel11"]
+visible = false
 margin_left = 906.023
 margin_top = -86.5339
 margin_right = 987.023
@@ -396,6 +405,7 @@ __meta__ = {
 }
 
 [node name="TextEdit" type="Label" parent="Panel12"]
+visible = false
 anchor_bottom = 0.141
 margin_left = -66.1548
 margin_top = 13.7401
@@ -410,6 +420,7 @@ __meta__ = {
 }
 
 [node name="TextureButton9" type="Button" parent="Panel12"]
+visible = false
 margin_left = 898.463
 margin_top = -39.9168
 margin_right = 979.463
@@ -427,6 +438,7 @@ scale = Vector2( 0.796426, 0.748252 )
 texture = ExtResource( 12 )
 
 [node name="Panel13" type="Panel" parent="."]
+visible = false
 margin_left = -2.0
 margin_top = 522.0
 margin_right = 1029.0
@@ -436,6 +448,7 @@ __meta__ = {
 }
 
 [node name="TextEdit" type="Label" parent="Panel13"]
+visible = false
 anchor_bottom = 0.141
 margin_left = 4.40082
 margin_top = 13.7401
