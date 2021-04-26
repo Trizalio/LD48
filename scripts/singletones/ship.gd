@@ -90,12 +90,14 @@ func _ready():
 #					render_stars()
 var actions = []
 func get_actions() -> Array:
-	actions.append('jump' + str(len(actions)))
+#	actions.append('jump' + str(len(actions)))
 #	return ['Jump', 'Recicle colonists', 'scan stars', 'scan planet', "colonise"]
+	actions = ['jump']
 	return actions
+
 	
-func do_action(action):
-	print('do_action: ', action)
+func do_action(action: String, source=null):
+	print('do_action: ', action, ' by: ', source)
 
 func get_star_path():
 	return visited_stars
