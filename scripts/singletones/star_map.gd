@@ -43,14 +43,26 @@ class Star:
 	var name_: String
 	var location: Vector2
 	var frame_seed: int
-	var terrestrial_planets: int = -1
-	var gas_giants: int = -1
-	var ice_giants: int = -1
-	var dwarf_planets: int = -1
+	var terrestrial_planets: int = 0
+	var gas_giants: int = 0
+	var ice_giants: int = 0
+	var dwarf_planets: int = 0
 	
 	func _init(_name: String, _location: Vector2):
 		name_ = _name
 		location = _location
+		var total_planets = 1 + randi() % 4
+		for i in total_planets:
+			var type = randi() % 4
+			if type == 0:
+				terrestrial_planets += 1
+			if type == 1:
+				gas_giants += 1
+			if type == 2:
+				ice_giants += 1
+			if type == 3:
+				dwarf_planets += 1
+			
 		frame_seed = randi()
 		
 class SystemStar:
@@ -123,13 +135,13 @@ func get_star_system_info(star: Star) -> StarSystem:
 		var last_range: float = 0
 		for i in range(star.terrestrial_planets):
 			var name = "terrestrial_planet-" + str(star.frame_seed)
-			var planet_range = (len(planets) + 1) * range_step + rand_range(-range_deviation, range_deviation)
+			var planet_range = (len(planets) + 2) * range_step + rand_range(-range_deviation, range_deviation)
 			var planet = Planet.new(name, planet_range, PlanetType.terrestrial_planet)
 			print('planet: ', planet)
 			planets.append(planet)
 		for i in range(star.gas_giants):
 			var name = "gas_giant-" + str(star.frame_seed)
-			var planet_range = (len(planets) + 1) * range_step + rand_range(-range_deviation, range_deviation)
+			var planet_range = (len(planets) + 2) * range_step + rand_range(-range_deviation, range_deviation)
 			var planet = Planet.new(name, planet_range, PlanetType.gas_giant)
 			print('planet: ', planet)
 			planets.append(planet)

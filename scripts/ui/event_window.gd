@@ -28,4 +28,4 @@ func set_choices(value: Array):
 
 func on_choice_click(index: int):
 	Ship.notification_result(index)
-	print(index);
+	get_parent().remove_child(self)
