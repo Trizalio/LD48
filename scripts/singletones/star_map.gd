@@ -117,19 +117,19 @@ func generate_new_map():
 	generate_stars_around_star(first_star)
 	return first_star
 
-func discover_star(star: Star):
-	star.terrestrial_planets = 1
-	star.gas_giants = 1
-	star.ice_giants = 1
-	star.dwarf_planets = 1
+#func discover_star(star: Star):
+#	star.terrestrial_planets = 1
+#	star.gas_giants = 1
+#	star.ice_giants = 1
+#	star.dwarf_planets = 1
 
-var range_step = 160
+var range_step = 80
 var range_deviation = 0.2 * range_step
 var _start_to_star_system: Dictionary = {}
 func get_star_system_info(star: Star) -> StarSystem:
 	if not _start_to_star_system.has(star):
 		
-		discover_star(star)
+#		discover_star(star)
 		var system_star = SystemStar.new(star.name_, star.frame_seed)
 		var planets: Array = []
 		var last_range: float = 0
@@ -137,13 +137,23 @@ func get_star_system_info(star: Star) -> StarSystem:
 			var name = "terrestrial_planet-" + str(star.frame_seed)
 			var planet_range = (len(planets) + 2) * range_step + rand_range(-range_deviation, range_deviation)
 			var planet = Planet.new(name, planet_range, PlanetType.terrestrial_planet)
-			print('planet: ', planet)
 			planets.append(planet)
 		for i in range(star.gas_giants):
 			var name = "gas_giant-" + str(star.frame_seed)
 			var planet_range = (len(planets) + 2) * range_step + rand_range(-range_deviation, range_deviation)
 			var planet = Planet.new(name, planet_range, PlanetType.gas_giant)
-			print('planet: ', planet)
+			planets.append(planet)
+			
+		for i in range(star.ice_giants):
+			var name = "ice_giant-" + str(star.frame_seed)
+			var planet_range = (len(planets) + 2) * range_step + rand_range(-range_deviation, range_deviation)
+			var planet = Planet.new(name, planet_range, PlanetType.ice_giant)
+			planets.append(planet)
+			
+		for i in range(star.dwarf_planets):
+			var name = "dwarf_planets-" + str(star.frame_seed)
+			var planet_range = (len(planets) + 2) * range_step + rand_range(-range_deviation, range_deviation)
+			var planet = Planet.new(name, planet_range, PlanetType.dwarf_planet)
 			planets.append(planet)
 #		star.discover()
 		print('planets: ', planets)
