@@ -125,6 +125,29 @@ func move_ship_to(planet_info):
 	current_object = planet_info
 	emit_signal("move_ship_to", planet_info)
 
+func finish_game(planet_info):
+	var success_points = 0;
+	success_points += planet_info.gravity;
+	success_points += planet_info.temperature;
+	success_points += planet_info.water;
+	success_points += planet_info.atmosphere;
+	
+	var success_result = success_points / 4;
+	
+	SceneChanger.goto_scene('res://scenes/ui/final_scene.tscn');
+	yield(SceneChanger, "scene_changed");
+	var root = get_tree().get_root();
+	if (success_result < 0.2):
+		root._on_TextureButton1_pressed(); #bad
+	elif (success_result < 0.4):
+		root._on_TextureButton2_pressed(); #bad
+	elif (success_result < 0.6):
+		root._on_TextureButton3_pressed(); #bad
+	elif (success_result < 0.8):
+		root._on_TextureButton3_pressed(); #50/50
+	elif (success_result <= 1):
+		root._on_TextureButton3_pressed(); #good
+
 func get_star_path():
 	return visited_stars
 	
