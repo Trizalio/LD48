@@ -123,7 +123,7 @@ func generate_new_map():
 #	star.ice_giants = 1
 #	star.dwarf_planets = 1
 
-var range_step = 80
+var range_step = 70
 var range_deviation = 0.2 * range_step
 var _start_to_star_system: Dictionary = {}
 func get_star_system_info(star: Star) -> StarSystem:
@@ -135,24 +135,24 @@ func get_star_system_info(star: Star) -> StarSystem:
 		var last_range: float = 0
 		for i in range(star.terrestrial_planets):
 			var name = "terrestrial_planet-" + str(star.frame_seed)
-			var planet_range = (len(planets) + 2) * range_step + rand_range(-range_deviation, range_deviation)
+			var planet_range = (len(planets) + 3) * range_step + rand_range(-range_deviation, range_deviation)
 			var planet = Planet.new(name, planet_range, PlanetType.terrestrial_planet)
 			planets.append(planet)
 		for i in range(star.gas_giants):
 			var name = "gas_giant-" + str(star.frame_seed)
-			var planet_range = (len(planets) + 2) * range_step + rand_range(-range_deviation, range_deviation)
+			var planet_range = (len(planets) + 3) * range_step + rand_range(-range_deviation, range_deviation)
 			var planet = Planet.new(name, planet_range, PlanetType.gas_giant)
 			planets.append(planet)
 			
 		for i in range(star.ice_giants):
 			var name = "ice_giant-" + str(star.frame_seed)
-			var planet_range = (len(planets) + 2) * range_step + rand_range(-range_deviation, range_deviation)
+			var planet_range = (len(planets) + 3) * range_step + rand_range(-range_deviation, range_deviation)
 			var planet = Planet.new(name, planet_range, PlanetType.ice_giant)
 			planets.append(planet)
 			
 		for i in range(star.dwarf_planets):
 			var name = "dwarf_planets-" + str(star.frame_seed)
-			var planet_range = (len(planets) + 2) * range_step + rand_range(-range_deviation, range_deviation)
+			var planet_range = (len(planets) + 3) * range_step + rand_range(-range_deviation, range_deviation)
 			var planet = Planet.new(name, planet_range, PlanetType.dwarf_planet)
 			planets.append(planet)
 #		star.discover()
