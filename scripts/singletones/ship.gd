@@ -107,6 +107,7 @@ func do_action(action: String, source=null):
 
 var current_object = null
 func move_ship_to(planet_info):
+	print('Ship.move_ship_to', planet_info.type_name)
 	current_object = planet_info
 	emit_signal("move_ship_to", planet_info)
 

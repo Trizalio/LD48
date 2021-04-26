@@ -171,6 +171,7 @@ func get_random():
 	
 	
 func move_ship_to(move_to):
+	print('main_scene.move_ship_to', move_to.type_name)
 #	if move_to not in space_obj_info_to_instanc :
 #		print("aaiaiiai")
 	print("moving to: " , move_to)
