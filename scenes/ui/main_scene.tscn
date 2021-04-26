@@ -13,5 +13,5 @@ volume_db = -6.0
 autoplay = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 506.602, 302.059 )
+position = Vector2( 512, 300 )
 current = true

@@ -128,6 +128,8 @@ func _input(event):
 	if event is InputEventMouseButton \
 	and event.button_index == BUTTON_LEFT \
 	and event.is_pressed():
+		close_menu()
+		draw_ship_menu()
 		star.close_passport()
 		var star_planets =  star.get_children()
 		for planet in star_planets:
@@ -149,4 +151,24 @@ func move_ship_to(move_to):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 
-#	pass
+#var container_class = preload("res://scenes/ui/CircularContainer.gd")
+
+var circular_menu_class = preload("res://scenes/circular_menu.tscn")
+var menu = null
+
+
+
+func close_menu():
+	if menu != null:
+		print('close menu')
+		menu.hide()
+		menu = null
+
+func draw_ship_menu():
+	if menu != null:
+		print('assert failed: attempt to create new menu, while old exists; close old')
+		close_menu()
+	var actions = Ship.get_actions()
+	menu = circular_menu_class.instance()
+	menu.init(actions, 1)
+	ship_inst.add_child(menu)
