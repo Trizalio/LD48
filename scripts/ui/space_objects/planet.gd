@@ -6,6 +6,7 @@ var angle = 0
 var rotation_speed = 0.2
 var _x_coord = 0
 var _y_coord = 0
+var rand_int_start_pos_offset = 0 
 var got_pasport = false
 var passport_ = preload("res://scenes/ui/space_object_passport.tscn")
 var all_kwargs = {}
@@ -55,6 +56,7 @@ func init_sapce_obj(kwargs, _radius, _objecy_type, _rotation_speed):
 	radius = _radius
 	var clickable_ = load("res://scenes/ui/utils/clicable.tscn")
 	var clickable_inst = clickable_.instance()
+	rand_int_start_pos_offset = kwargs["rand_int_start_pos_offset"]
 	all_kwargs = kwargs
 	clickable_inst.connect("clicked", self, "open_passport")
 	var number_of_framse = clickable_inst.animate_sprite.get_sprite_frames().get_frame_count(kwargs["animation"])
@@ -125,6 +127,7 @@ func draw_ship_menu():
 	
 	
 func draw_planet_menu():
+
 	if planet_menu != null:
 		print('assert failed: attempt to create new ship_menu, while old exists; close old')
 		close_ship_menu()
@@ -132,12 +135,12 @@ func draw_planet_menu():
 #	var actions = Ship.get_actions()
 	planet_menu = circular_menu_class.instance()
 	var actions = ["name: " + String(space_object_info.name_)
-	, "gravity: " + String(space_object_info.gravity)
-	,"temperature: " + String(space_object_info.temperature)
-	,"water: " + String(space_object_info.water)
-	,"atmosphere:" +  String(space_object_info.atmosphere)
-	,"resources: " + String(space_object_info.resources)
-	,"life: " + String(space_object_info.life)
+	, get_str_or_none("gravity: " ,space_object_info.gravity)
+	,get_str_or_none("temperature: ", space_object_info.temperature)
+	,get_str_or_none("water: ", space_object_info.water)
+	,get_str_or_none("atmosphere:" , space_object_info.atmosphere)
+	,get_str_or_none("resources: ", space_object_info.resources)
+	,get_str_or_none("life: " ,space_object_info.life)
 	, "move"
 	]
 	
@@ -152,7 +155,12 @@ func draw_planet_menu():
 #	var life: float = -1
 	planet_menu.init(actions, 1, true)
 	planet_menu.connect("action_clicked_2",self, "close_passport")
+	planet_menu.connect("action_clicked", self, "planet_menu_clicked", [space_object_info])
+	planet_menu.set_scale(Vector2(2.2, 2.2))
 	self.add_child(planet_menu)
+	
+func planet_menu_clicked(action, type, planet_info):
+	Ship.move_ship_to(planet_info)
 	
 func close_planet_menu():
 	if planet_menu != null:
@@ -161,6 +169,12 @@ func close_planet_menu():
 		planet_menu = null
 
 
+func get_str_or_none(name_, value):
+	if value == -1:
+		return name_ + ": unknown"
+	else:
+		return name_ + ": " + String(value)
+	pass
 #class PlanetInfo:
 #	var type: int = 0 
 #	var know_info: Array = []

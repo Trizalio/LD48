@@ -61,7 +61,7 @@ func is_presed(action):
 	var type = "ship"
 	if is_planet:
 		type = "planet"
-	emit_signal("action_clicked", [action, type])	
+	emit_signal("action_clicked", action, type)	
 #	emit_signal("action_clicked", [action, type])	
 	print("im pressed", action, " ", type)
 	emit_signal("action_clicked_2")	

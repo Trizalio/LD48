@@ -19,9 +19,12 @@ var ship_inst
 var shipe_rotating_around 
 var space_obj_info_to_instanc = {}
 # Called when the node enters the scene tree for the first time.
+
 func _ready():
+#	move_ship_to
+	Ship.connect("move_ship_to", self, "move_ship_to")
 	rng.randomize()
-	var my_random_number = rng.randi_range(2, 5)
+#	var my_random_number = rng.randi_range(2, 5)
 #	my_random_number = 0
 #	print(my_random_number, " !!!!!!!!!!!!!!!!!!!!")
 #	var start =
@@ -38,14 +41,16 @@ func _ready():
 #	for i in a: 
 #		print(i)
 #	print("_______________________________")
-	var kwargs = {"frame_seed":star_info.star.frame_seed, "animation":"star"} 
+	var kwargs = {"frame_seed":star_info.star.frame_seed, "animation":"star",
+	 "rand_int_start_pos_offset": get_random()} 
 	kwargs["space_object_info"] = star_info
 	star.init_sapce_obj(kwargs, 0, "star", 0)
+#	star.set_scale(Vector2(0.4,0.4))
 	star.position = Vector2(screenWidth/2, screenHights/2) 
 	space_obj_info_to_instanc[star_info] = star
 	
 	
-	kwargs = {"frame_seed":0, "animation":"spaceship"} 
+	kwargs = {"frame_seed":0, "animation":"spaceship", "rand_int_start_pos_offset": 0} 
 	ship_inst = space_object_preload.instance()
 	ship_inst.init_sapce_obj(kwargs, screenWidth/8, "ship", 0.4)
 	star.add_child(ship_inst)
@@ -64,16 +69,19 @@ func _ready():
 		kwargs['frame_seed'] = planet_info.frame_seed
 		kwargs['name'] = planet_info.name_
 		kwargs["space_object_info"] = planet_info
+		kwargs["rand_int_start_pos_offset"] = get_random()
 		print(planet_info.range_from_star, " range")
 #		print(kwargs['test'])
 #		planet.init_sapce_obj("res://icon.png", screenWidth/2 + i * 100, screenHights/2, "tetetetewwt")
 		planet.init_sapce_obj(kwargs, planet_info.range_from_star, "planet", 0.0005 * planet_info.range_from_star)
 		space_obj_info_to_instanc[planet_info] = planet		
 		planet.connect("close_all",self, "close_passports")
+#		planet.position = Vector2(planet_info.range_from_star, planet_info.range_from_star)
+		planet.set_scale(Vector2(0.4,0.4))
 #		a = planet_info
 #		kwargs = {"test":i, "animation":"gas giants"} 
 #		planet.position = Vector2(screenWidth/2 + i * 100, screenHights/2)
-#		planet.position = Vector2(i * 100, 0)
+		planet.position = Vector2(300, 0)
 #		planets.append(planet)
 #		var test = clickable_instance.Planet_info.new(1,[2],3,4)
 #		var planet_info = PlanetInfo.new()
@@ -98,8 +106,9 @@ func close_passports():
 #				pass
 				planet.close_passport()
 	
+
 func _process(delta):
-	$Camera2D.position = (get_viewport().get_mouse_position() + ship_inst.global_position)/2
+	$Camera2D.position = get_viewport().get_mouse_position() + ship_inst.global_position - star.global_position
 #	print(global_position())
 #	$Camera2D.position = ship_inst.global_position
 	var star_objs =  star.get_children()
@@ -111,10 +120,10 @@ func _process(delta):
 #		planet.rotate_y(rotation_speed * delta)
 #			planet.rotation += rotation_speed * delta
 #		planet.move(delta)
-			self.rotate_obj(star_related_obj, delta)
+			self.rotate_obj(star_related_obj, delta, 2)
 			var planet_related =  star_related_obj.get_children()
 			if ship_inst in planet_related:
-				self.rotate_obj(ship_inst, delta)
+				self.rotate_obj(ship_inst, delta, 1)
 #			var currnet_pos = star_related_obj.position
 ##			print(currnet_pos)
 #			star_related_obj.angle = fmod(star_related_obj.angle +
@@ -126,16 +135,17 @@ func _process(delta):
 #		planet.rotation += rotation_speed * delta
 
 #sr_arf mejdi zvezdoi i mishkoi
-func rotate_obj(related_obj, delta):
+func rotate_obj(related_obj, delta, x):
 			var currnet_pos = related_obj.position
 #			print(currnet_pos)
 			related_obj.angle = fmod(related_obj.angle +
-			 (related_obj.rotation_speed * delta), 2 * PI)
+			 (related_obj.rotation_speed * delta),  2 * PI) 
+			related_obj.angle  = related_obj.angle 
 #			print(planet.angle)
 #			print(planet.radius)
 #			var pos = Vector2(sin(planet.angle) * currnet_pos[0], cos(planet.angle) * planet.radius)
-			var pos = Vector2(sin(related_obj.angle) * related_obj.radius,
-			 cos(related_obj.angle) * related_obj.radius)
+			var pos = Vector2((sin(related_obj.angle + related_obj.rand_int_start_pos_offset))  * related_obj.radius,
+			 (cos(related_obj.angle+ related_obj.rand_int_start_pos_offset)) * related_obj.radius)
 			related_obj.position = pos
 func _input(event):
 	if event is InputEventMouseButton \
@@ -156,6 +166,10 @@ func _input(event):
 #		position = get_global_mouse_position()
 #	$Camera2D.position = (event.position + ship_inst.position)/2
 
+func get_random():
+	return rng.randi_range(2, 6)
+	
+	
 func move_ship_to(move_to):
 #	if move_to not in space_obj_info_to_instanc :
 #		print("aaiaiiai")
@@ -164,6 +178,7 @@ func move_ship_to(move_to):
 	var inst = space_obj_info_to_instanc[move_to]
 	inst.add_child(ship_inst)
 	shipe_rotating_around = inst
+	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

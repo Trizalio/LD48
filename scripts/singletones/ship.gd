@@ -23,6 +23,7 @@ var materials: float = 1
 var current_star = null
 var visited_stars = []
 
+signal move_ship_to (planet)
 
 func new_game():
 	print('Ship.new_game start')
@@ -101,8 +102,13 @@ func do_action(action: String, source=null):
 	print('do_action: ', action, ' by: ', source)
 	if action == 'jump':
 		SceneChanger.goto_scene('res://scenes/ui/navigation_window/navigation_window.tscn')
-		
-		
+	if action == 'move':
+		pass
+
+var current_object = null
+func move_ship_to(planet_info):
+	current_object = planet_info
+	emit_signal("move_ship_to", planet_info)
 
 func get_star_path():
 	return visited_stars
