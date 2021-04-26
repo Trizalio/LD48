@@ -3,7 +3,6 @@
 [ext_resource path="res://resources/Pics/Final_Scene/Sucsessful 0.jpg" type="Texture" id=1]
 [ext_resource path="res://resources/fonts/bitwise.tres" type="DynamicFont" id=2]
 [ext_resource path="res://resources/Pics/Final_Scene/Sucsessful-20.png" type="Texture" id=3]
-[ext_resource path="res://resources/Sounds/AIgreat.wav" type="AudioStream" id=4]
 [ext_resource path="res://resources/Pics/Final_Scene/Sucsessful-50.jpg" type="Texture" id=5]
 [ext_resource path="res://resources/Pics/Icons/Next1.png" type="Texture" id=6]
 [ext_resource path="res://resources/Pics/Final_Scene/village.jpg" type="Texture" id=7]
@@ -19,34 +18,33 @@
 [ext_resource path="res://resources/Sounds/BadEnd.wav" type="AudioStream" id=17]
 [ext_resource path="res://resources/Sounds/AI_human (mp3cut.net).wav" type="AudioStream" id=18]
 [ext_resource path="res://resources/Sounds/aidead.mp3" type="AudioStream" id=19]
+[ext_resource path="res://scenes/ui/final_scene.gd" type="Script" id=20]
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource( 20 )
+
+[node name="AIColonystsDead" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 19 )
+volume_db = -6.0
 
 [node name="AI_human2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 18 )
 volume_db = -6.0
-autoplay = true
-
-[node name="AIdead+ColonystsDead" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 19 )
-autoplay = true
 
 [node name="GoodEnd" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 14 )
-autoplay = true
 
-[node name="50-50End" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 15 )
-autoplay = true
-
-[node name="BadEnd-50" type="AudioStreamPlayer" parent="."]
+[node name="BadEnd50" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 17 )
 volume_db = -6.0
-autoplay = true
 
-[node name="AI_great+AIhuman" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 4 )
-autoplay = true
+[node name="fiftyfiftyend" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 15 )
+volume_db = -6.0
+
+[node name="AIHumanGreat" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
+volume_db = -6.0
 
 [node name="Sucsessful_0" type="Sprite" parent="."]
 visible = false
@@ -56,32 +54,35 @@ texture = ExtResource( 1 )
 
 [node name="Panel4" type="Panel" parent="."]
 visible = false
-margin_left = 1.0
-margin_top = 522.0
-margin_right = 1029.0
-margin_bottom = 600.0
+margin_left = -6.93701
+margin_top = 529.937
+margin_right = 1021.06
+margin_bottom = 607.937
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="TextEdit" type="Label" parent="Panel4"]
+visible = false
 anchor_bottom = 0.141
-margin_left = 17.0
-margin_top = 15.0
-margin_right = 1028.0
-margin_bottom = 89.002
+margin_left = 10.6504
+margin_top = 10.2378
+margin_right = 1021.65
+margin_bottom = 84.2398
 custom_fonts/font = ExtResource( 2 )
-text = "The Earth is the cradle of cruel humanity.
-People constantly fought internecine wars, until they finally destroyed their home."
+text = "People were unable to equip the colony and died fighting for the last crumbs
+of resources on board the ship."
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="TextureButton1" type="TextureButton" parent="Panel4"]
-margin_left = 904.763
-margin_top = 21.8193
-margin_right = 985.763
-margin_bottom = 53.8193
+visible = false
+margin_left = 834.917
+margin_top = -262.325
+margin_right = 915.917
+margin_bottom = -230.325
 texture_normal = ExtResource( 6 )
 texture_pressed = ExtResource( 9 )
 expand = true
@@ -89,7 +90,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sucsessful<20" type="Sprite" parent="."]
+[node name="Sucsessful20" type="Sprite" parent="."]
 visible = false
 position = Vector2( 518.761, 294.426 )
 scale = Vector2( 0.868815, 0.868815 )
@@ -97,7 +98,7 @@ texture = ExtResource( 3 )
 
 [node name="Panel5" type="Panel" parent="."]
 visible = false
-margin_left = 1.0
+margin_left = -2.0
 margin_top = 522.0
 margin_right = 1029.0
 margin_bottom = 600.0
@@ -108,23 +109,24 @@ __meta__ = {
 [node name="TextEdit" type="Label" parent="Panel5"]
 visible = false
 anchor_bottom = 0.141
-margin_left = 17.0
-margin_top = 15.0
-margin_right = 1028.0
-margin_bottom = 89.002
+margin_left = 5.88818
+margin_top = 14.9999
+margin_right = 1016.89
+margin_bottom = 89.0019
 custom_fonts/font = ExtResource( 2 )
-text = "However, before the death of the Earth, humanity managed to build and launch ark ships 
-in deep space together."
+text = "People were able to build a tiny outpost, but they could not establish industry and as the systems 
+brought from Earth failed, people gradually died out."
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="TextureButton2" type="TextureButton" parent="Panel5"]
 visible = false
-margin_left = 904.763
-margin_top = 21.8193
-margin_right = 985.763
-margin_bottom = 53.8193
+margin_left = 879.365
+margin_top = -292.486
+margin_right = 960.365
+margin_bottom = -260.486
 texture_normal = ExtResource( 6 )
 texture_pressed = ExtResource( 9 )
 expand = true
@@ -132,7 +134,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sucsessful-50" type="Sprite" parent="."]
+[node name="Sucsessful50" type="Sprite" parent="."]
 visible = false
 position = Vector2( 454.938, 303.87 )
 scale = Vector2( 0.601775, 0.565375 )
@@ -140,7 +142,7 @@ texture = ExtResource( 5 )
 
 [node name="Panel6" type="Panel" parent="."]
 visible = false
-margin_left = 1.0
+margin_left = -3.0
 margin_top = 522.0
 margin_right = 1029.0
 margin_bottom = 600.0
@@ -151,27 +153,28 @@ __meta__ = {
 [node name="TextEdit" type="Label" parent="Panel6"]
 visible = false
 anchor_bottom = 0.141
-margin_left = 17.0
-margin_top = 15.0
-margin_right = 1028.0
-margin_bottom = 89.002
+margin_left = -9.87012
+margin_top = 13.5858
+margin_right = 1001.13
+margin_bottom = 87.5878
 custom_fonts/font = ExtResource( 2 )
-text = "Each ark is controlled by AI, which helps people in their search for a new planet, 
-which would become a new haven for humanity."
+text = "People were able to organize an independent colony, despite the difficult conditions. 
+However, they cannot leave it due to the minimal technological capabilities."
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="TextureButton3" type="Button" parent="Panel6"]
 visible = false
-margin_left = 904.763
-margin_top = 21.8193
-margin_right = 985.763
-margin_bottom = 53.8193
+margin_left = 877.893
+margin_top = -71.5188
+margin_right = 958.893
+margin_bottom = -39.5188
 custom_fonts/font = ExtResource( 2 )
 text = "Play"
 
-[node name="Sucsessful+51_village" type="Sprite" parent="."]
+[node name="Sucsessful51_village" type="Sprite" parent="."]
 visible = false
 position = Vector2( 519.22, 306.701 )
 scale = Vector2( 0.882701, 0.829308 )
@@ -179,7 +182,7 @@ texture = ExtResource( 7 )
 
 [node name="Panel7" type="Panel" parent="."]
 visible = false
-margin_left = 1.0
+margin_left = -3.0
 margin_top = 522.0
 margin_right = 1029.0
 margin_bottom = 600.0
@@ -188,31 +191,33 @@ __meta__ = {
 }
 
 [node name="TextEdit" type="Label" parent="Panel7"]
-visible = false
 anchor_bottom = 0.141
-margin_left = 17.0
-margin_top = 15.0
-margin_right = 1028.0
-margin_bottom = 89.002
+margin_left = 9.92889
+margin_top = 13.5858
+margin_right = 1020.93
+margin_bottom = 87.5878
 custom_fonts/font = ExtResource( 2 )
-text = "Each ark is controlled by AI, which helps people in their search for a new planet, 
-which would become a new haven for humanity."
+text = "People in spite of everything were able to settle on this planet, but due to the lack of resources, 
+you can forget about a technologically advanced civilization."
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureButton3" type="Button" parent="Panel7"]
-visible = false
-margin_left = 904.763
-margin_top = 21.8193
-margin_right = 985.763
-margin_bottom = 53.8193
+[node name="TextureButton4" type="Button" parent="Panel7"]
+margin_left = 903.349
+margin_top = -61.6193
+margin_right = 984.349
+margin_bottom = -29.6193
 custom_fonts/font = ExtResource( 2 )
 text = "Play"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Sucsessful+50" type="Sprite" parent="."]
+[node name="Sucsessful60" type="Sprite" parent="."]
 visible = false
-position = Vector2( 495.012, 298.213 )
+position = Vector2( 493.513, 230.789 )
 scale = Vector2( 0.715506, 0.672227 )
 texture = ExtResource( 16 )
 
@@ -228,25 +233,29 @@ __meta__ = {
 
 [node name="TextEdit" type="Label" parent="Panel8"]
 anchor_bottom = 0.141
-margin_left = 17.0
-margin_top = 15.0
-margin_right = 1028.0
-margin_bottom = 89.002
+margin_left = -107.451
+margin_top = 4.51471
+margin_right = 1133.55
+margin_bottom = 78.5167
 custom_fonts/font = ExtResource( 2 )
-text = "Each ark is controlled by AI, which helps people in their search for a new planet, 
-which would become a new haven for humanity."
+text = "Humanity was able to settle here, but he had to pay his price - they lost their technologies 
+and rolled back in their development.
+Someday they will be able to conquer space again. But not right now."
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureButton3" type="Button" parent="Panel8"]
-visible = false
+[node name="TextureButton5" type="Button" parent="Panel8"]
 margin_left = 904.763
 margin_top = 21.8193
 margin_right = 985.763
 margin_bottom = 53.8193
 custom_fonts/font = ExtResource( 2 )
 text = "Play"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="AI_human" type="Sprite" parent="."]
 visible = false
@@ -265,26 +274,31 @@ __meta__ = {
 }
 
 [node name="TextEdit" type="Label" parent="Panel9"]
+visible = false
 anchor_bottom = 0.141
-margin_left = 17.0
-margin_top = 15.0
-margin_right = 1028.0
-margin_bottom = 89.002
+margin_left = 0.02948
+margin_top = 12.1716
+margin_right = 1011.03
+margin_bottom = 86.1736
 custom_fonts/font = ExtResource( 2 )
-text = "Each ark is controlled by AI, which helps people in their search for a new planet, 
-which would become a new haven for humanity."
+text = "Thanks to space knowledge, AI has developed so much that it took the further fate 
+of humanity under its control. Is this a success? .."
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureButton3" type="Button" parent="Panel9"]
+[node name="TextureButton6" type="Button" parent="Panel9"]
 visible = false
-margin_left = 904.763
-margin_top = 21.8193
-margin_right = 985.763
-margin_bottom = 53.8193
+margin_left = 907.591
+margin_top = -58.7909
+margin_right = 988.591
+margin_bottom = -26.7909
 custom_fonts/font = ExtResource( 2 )
 text = "Play"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Great_Human" type="Sprite" parent="."]
 visible = false
@@ -294,7 +308,7 @@ texture = ExtResource( 10 )
 
 [node name="Panel10" type="Panel" parent="."]
 visible = false
-margin_left = 1.0
+margin_left = -3.0
 margin_top = 522.0
 margin_right = 1029.0
 margin_bottom = 600.0
@@ -304,25 +318,26 @@ __meta__ = {
 
 [node name="TextEdit" type="Label" parent="Panel10"]
 anchor_bottom = 0.141
-margin_left = 17.0
-margin_top = 15.0
-margin_right = 1028.0
-margin_bottom = 89.002
+margin_left = 51.0178
+margin_top = 23.8195
+margin_right = 1062.02
+margin_bottom = 97.8215
 custom_fonts/font = ExtResource( 2 )
-text = "Each ark is controlled by AI, which helps people in their search for a new planet, 
-which would become a new haven for humanity."
+text = "Humanity achieved success by founding a colony here and quickly regained its former greatness."
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureButton3" type="Button" parent="Panel10"]
-visible = false
-margin_left = 904.763
-margin_top = 21.8193
-margin_right = 985.763
-margin_bottom = 53.8193
+[node name="TextureButton7" type="Button" parent="Panel10"]
+margin_left = 912.323
+margin_top = -63.8554
+margin_right = 993.323
+margin_bottom = -31.8554
 custom_fonts/font = ExtResource( 2 )
 text = "Play"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="dead_AI" type="Sprite" parent="."]
 visible = false
@@ -332,7 +347,7 @@ texture = ExtResource( 11 )
 
 [node name="Panel11" type="Panel" parent="."]
 visible = false
-margin_left = 1.0
+margin_left = -5.0
 margin_top = 522.0
 margin_right = 1029.0
 margin_bottom = 600.0
@@ -342,25 +357,28 @@ __meta__ = {
 
 [node name="TextEdit" type="Label" parent="Panel11"]
 anchor_bottom = 0.141
-margin_left = 17.0
-margin_top = 15.0
-margin_right = 1028.0
-margin_bottom = 89.002
+margin_left = 6.92065
+margin_top = 15.4802
+margin_right = 1017.92
+margin_bottom = 89.4822
 custom_fonts/font = ExtResource( 2 )
-text = "Each ark is controlled by AI, which helps people in their search for a new planet, 
-which would become a new haven for humanity."
+text = "When the last colonist died, the onboard AI lost its only target. The ship has shut down, 
+and its skeleton has been drifting in space for hundreds of thousands of years."
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureButton3" type="Button" parent="Panel11"]
-visible = false
-margin_left = 904.763
-margin_top = 21.8193
-margin_right = 985.763
-margin_bottom = 53.8193
+[node name="TextureButton8" type="Button" parent="Panel11"]
+margin_left = 906.023
+margin_top = -86.5339
+margin_right = 987.023
+margin_bottom = -54.5339
 custom_fonts/font = ExtResource( 2 )
 text = "Play"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="dead_AIself" type="Sprite" parent="."]
 visible = false
@@ -370,7 +388,7 @@ texture = ExtResource( 13 )
 
 [node name="Panel12" type="Panel" parent="."]
 visible = false
-margin_left = 1.0
+margin_left = -3.0
 margin_top = 522.0
 margin_right = 1029.0
 margin_bottom = 600.0
@@ -380,25 +398,28 @@ __meta__ = {
 
 [node name="TextEdit" type="Label" parent="Panel12"]
 anchor_bottom = 0.141
-margin_left = 17.0
-margin_top = 15.0
-margin_right = 1028.0
-margin_bottom = 89.002
+margin_left = -66.1548
+margin_top = 13.7401
+margin_right = 1096.85
+margin_bottom = 87.7421
 custom_fonts/font = ExtResource( 2 )
-text = "Each ark is controlled by AI, which helps people in their search for a new planet, 
-which would become a new haven for humanity."
+text = "With the death of the last colonist, the onboard AI lost its main purpose of existence, but its improved 
+intelligence is able to set goals for itself. The ship will continue its journey free of debt to its creators."
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureButton3" type="Button" parent="Panel12"]
-visible = false
-margin_left = 904.763
-margin_top = 21.8193
-margin_right = 985.763
-margin_bottom = 53.8193
+[node name="TextureButton9" type="Button" parent="Panel12"]
+margin_left = 898.463
+margin_top = -39.9168
+margin_right = 979.463
+margin_bottom = -7.91685
 custom_fonts/font = ExtResource( 2 )
 text = "Play"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="AIgreat" type="Sprite" parent="."]
 position = Vector2( 515.911, 233.972 )
@@ -406,8 +427,7 @@ scale = Vector2( 0.796426, 0.748252 )
 texture = ExtResource( 12 )
 
 [node name="Panel13" type="Panel" parent="."]
-visible = false
-margin_left = 1.0
+margin_left = -2.0
 margin_top = 522.0
 margin_right = 1029.0
 margin_bottom = 600.0
@@ -417,22 +437,33 @@ __meta__ = {
 
 [node name="TextEdit" type="Label" parent="Panel13"]
 anchor_bottom = 0.141
-margin_left = 17.0
-margin_top = 15.0
-margin_right = 1028.0
-margin_bottom = 89.002
+margin_left = 4.40082
+margin_top = 13.7401
+margin_right = 1015.4
+margin_bottom = 87.7421
 custom_fonts/font = ExtResource( 2 )
-text = "Each ark is controlled by AI, which helps people in their search for a new planet, 
-which would become a new haven for humanity."
+text = "AI gained self-awareness and accumulated knowledge that is many times greater than human. 
+He is no longer interested in humanity, he will explore the universe."
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureButton3" type="Button" parent="Panel13"]
-visible = false
-margin_left = 904.763
-margin_top = 21.8193
-margin_right = 985.763
-margin_bottom = 53.8193
+[node name="TextureButton10" type="Button" parent="Panel13"]
+margin_left = 907.283
+margin_top = -53.776
+margin_right = 988.283
+margin_bottom = -21.776
 custom_fonts/font = ExtResource( 2 )
 text = "Play"
+
+[connection signal="pressed" from="Panel4/TextureButton1" to="." method="_on_TextureButton1_pressed"]
+[connection signal="pressed" from="Panel5/TextureButton2" to="." method="_on_TextureButton2_pressed"]
+[connection signal="pressed" from="Panel6/TextureButton3" to="." method="_on_TextureButton3_pressed"]
+[connection signal="pressed" from="Panel7/TextureButton4" to="." method="_on_TextureButton4_pressed"]
+[connection signal="pressed" from="Panel8/TextureButton5" to="." method="_on_TextureButton5_pressed"]
+[connection signal="pressed" from="Panel9/TextureButton6" to="." method="_on_TextureButton6_pressed"]
+[connection signal="pressed" from="Panel10/TextureButton7" to="." method="_on_TextureButton7_pressed"]
+[connection signal="pressed" from="Panel11/TextureButton8" to="." method="_on_TextureButton8_pressed"]
+[connection signal="pressed" from="Panel12/TextureButton9" to="." method="_on_TextureButton9_pressed"]
+[connection signal="pressed" from="Panel13/TextureButton10" to="." method="_on_TextureButton10_pressed"]

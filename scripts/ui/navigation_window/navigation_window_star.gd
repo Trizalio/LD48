@@ -13,6 +13,8 @@ var color: String;
 
 func _ready():
 	sprite = get_node(sprite_path);
+	var numb = randi()%10+1
+	$AnimationPlayer.seek(numb, false)
 
 func set_color(value):
 	sprite.self_modulate = Color(value);

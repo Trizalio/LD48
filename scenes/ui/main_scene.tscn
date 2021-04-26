@@ -46,13 +46,13 @@ scale = Vector2( 1.89023, 1.86807 )
 texture = ExtResource( 5 )
 
 [node name="Sprite" type="Sprite" parent="."]
-modulate = Color( 1, 1, 1, 0.415686 )
+modulate = Color( 1, 1, 1, 0.54902 )
 position = Vector2( 517, 300 )
 scale = Vector2( 1.11979, 1.10667 )
 texture = ExtResource( 4 )
 
 [node name="Dark-space-wallpaper-HD" type="Sprite" parent="."]
-modulate = Color( 1, 1, 1, 0.717647 )
+modulate = Color( 1, 1, 1, 0.454902 )
 position = Vector2( 578.945, 291.493 )
 scale = Vector2( 1.11979, 1.10667 )
 texture = ExtResource( 3 )
