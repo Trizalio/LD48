@@ -1,0 +1,438 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://resources/Pics/Final_Scene/Sucsessful 0.jpg" type="Texture" id=1]
+[ext_resource path="res://resources/fonts/bitwise.tres" type="DynamicFont" id=2]
+[ext_resource path="res://resources/Pics/Final_Scene/Sucsessful-20.png" type="Texture" id=3]
+[ext_resource path="res://resources/Sounds/AIgreat.wav" type="AudioStream" id=4]
+[ext_resource path="res://resources/Pics/Final_Scene/Sucsessful-50.jpg" type="Texture" id=5]
+[ext_resource path="res://resources/Pics/Icons/Next1.png" type="Texture" id=6]
+[ext_resource path="res://resources/Pics/Final_Scene/village.jpg" type="Texture" id=7]
+[ext_resource path="res://resources/Pics/Final_Scene/AI.jpg" type="Texture" id=8]
+[ext_resource path="res://resources/Pics/Icons/Next2.png" type="Texture" id=9]
+[ext_resource path="res://resources/Pics/Final_Scene/great.jpg" type="Texture" id=10]
+[ext_resource path="res://resources/Pics/Final_Scene/deadAI.jpg" type="Texture" id=11]
+[ext_resource path="res://resources/Pics/Final_Scene/AIgreat.jpg" type="Texture" id=12]
+[ext_resource path="res://resources/Pics/Final_Scene/deadAIself.jpg" type="Texture" id=13]
+[ext_resource path="res://resources/Sounds/GoodEnd.wav" type="AudioStream" id=14]
+[ext_resource path="res://resources/Sounds/50-50end (mp3cut.net).wav" type="AudioStream" id=15]
+[ext_resource path="res://resources/Pics/Final_Scene/potential.jpg" type="Texture" id=16]
+[ext_resource path="res://resources/Sounds/BadEnd.wav" type="AudioStream" id=17]
+[ext_resource path="res://resources/Sounds/AI_human (mp3cut.net).wav" type="AudioStream" id=18]
+[ext_resource path="res://resources/Sounds/aidead.mp3" type="AudioStream" id=19]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="AI_human2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 18 )
+volume_db = -6.0
+autoplay = true
+
+[node name="AIdead+ColonystsDead" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 19 )
+autoplay = true
+
+[node name="GoodEnd" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
+autoplay = true
+
+[node name="50-50End" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 15 )
+autoplay = true
+
+[node name="BadEnd-50" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 17 )
+volume_db = -6.0
+autoplay = true
+
+[node name="AI_great+AIhuman" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+autoplay = true
+
+[node name="Sucsessful_0" type="Sprite" parent="."]
+visible = false
+position = Vector2( 514.864, 314.45 )
+scale = Vector2( 0.406774, 0.406774 )
+texture = ExtResource( 1 )
+
+[node name="Panel4" type="Panel" parent="."]
+visible = false
+margin_left = 1.0
+margin_top = 522.0
+margin_right = 1029.0
+margin_bottom = 600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextEdit" type="Label" parent="Panel4"]
+anchor_bottom = 0.141
+margin_left = 17.0
+margin_top = 15.0
+margin_right = 1028.0
+margin_bottom = 89.002
+custom_fonts/font = ExtResource( 2 )
+text = "The Earth is the cradle of cruel humanity.
+People constantly fought internecine wars, until they finally destroyed their home."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton1" type="TextureButton" parent="Panel4"]
+margin_left = 904.763
+margin_top = 21.8193
+margin_right = 985.763
+margin_bottom = 53.8193
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 9 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sucsessful<20" type="Sprite" parent="."]
+visible = false
+position = Vector2( 518.761, 294.426 )
+scale = Vector2( 0.868815, 0.868815 )
+texture = ExtResource( 3 )
+
+[node name="Panel5" type="Panel" parent="."]
+visible = false
+margin_left = 1.0
+margin_top = 522.0
+margin_right = 1029.0
+margin_bottom = 600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextEdit" type="Label" parent="Panel5"]
+visible = false
+anchor_bottom = 0.141
+margin_left = 17.0
+margin_top = 15.0
+margin_right = 1028.0
+margin_bottom = 89.002
+custom_fonts/font = ExtResource( 2 )
+text = "However, before the death of the Earth, humanity managed to build and launch ark ships 
+in deep space together."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton2" type="TextureButton" parent="Panel5"]
+visible = false
+margin_left = 904.763
+margin_top = 21.8193
+margin_right = 985.763
+margin_bottom = 53.8193
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 9 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sucsessful-50" type="Sprite" parent="."]
+visible = false
+position = Vector2( 454.938, 303.87 )
+scale = Vector2( 0.601775, 0.565375 )
+texture = ExtResource( 5 )
+
+[node name="Panel6" type="Panel" parent="."]
+visible = false
+margin_left = 1.0
+margin_top = 522.0
+margin_right = 1029.0
+margin_bottom = 600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextEdit" type="Label" parent="Panel6"]
+visible = false
+anchor_bottom = 0.141
+margin_left = 17.0
+margin_top = 15.0
+margin_right = 1028.0
+margin_bottom = 89.002
+custom_fonts/font = ExtResource( 2 )
+text = "Each ark is controlled by AI, which helps people in their search for a new planet, 
+which would become a new haven for humanity."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton3" type="Button" parent="Panel6"]
+visible = false
+margin_left = 904.763
+margin_top = 21.8193
+margin_right = 985.763
+margin_bottom = 53.8193
+custom_fonts/font = ExtResource( 2 )
+text = "Play"
+
+[node name="Sucsessful+51_village" type="Sprite" parent="."]
+visible = false
+position = Vector2( 519.22, 306.701 )
+scale = Vector2( 0.882701, 0.829308 )
+texture = ExtResource( 7 )
+
+[node name="Panel7" type="Panel" parent="."]
+visible = false
+margin_left = 1.0
+margin_top = 522.0
+margin_right = 1029.0
+margin_bottom = 600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextEdit" type="Label" parent="Panel7"]
+visible = false
+anchor_bottom = 0.141
+margin_left = 17.0
+margin_top = 15.0
+margin_right = 1028.0
+margin_bottom = 89.002
+custom_fonts/font = ExtResource( 2 )
+text = "Each ark is controlled by AI, which helps people in their search for a new planet, 
+which would become a new haven for humanity."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton3" type="Button" parent="Panel7"]
+visible = false
+margin_left = 904.763
+margin_top = 21.8193
+margin_right = 985.763
+margin_bottom = 53.8193
+custom_fonts/font = ExtResource( 2 )
+text = "Play"
+
+[node name="Sucsessful+50" type="Sprite" parent="."]
+visible = false
+position = Vector2( 495.012, 298.213 )
+scale = Vector2( 0.715506, 0.672227 )
+texture = ExtResource( 16 )
+
+[node name="Panel8" type="Panel" parent="."]
+visible = false
+margin_left = 1.0
+margin_top = 522.0
+margin_right = 1029.0
+margin_bottom = 600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextEdit" type="Label" parent="Panel8"]
+anchor_bottom = 0.141
+margin_left = 17.0
+margin_top = 15.0
+margin_right = 1028.0
+margin_bottom = 89.002
+custom_fonts/font = ExtResource( 2 )
+text = "Each ark is controlled by AI, which helps people in their search for a new planet, 
+which would become a new haven for humanity."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton3" type="Button" parent="Panel8"]
+visible = false
+margin_left = 904.763
+margin_top = 21.8193
+margin_right = 985.763
+margin_bottom = 53.8193
+custom_fonts/font = ExtResource( 2 )
+text = "Play"
+
+[node name="AI_human" type="Sprite" parent="."]
+visible = false
+position = Vector2( 514.565, 309.698 )
+scale = Vector2( 0.418696, 0.39337 )
+texture = ExtResource( 8 )
+
+[node name="Panel9" type="Panel" parent="."]
+visible = false
+margin_left = 1.0
+margin_top = 522.0
+margin_right = 1029.0
+margin_bottom = 600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextEdit" type="Label" parent="Panel9"]
+anchor_bottom = 0.141
+margin_left = 17.0
+margin_top = 15.0
+margin_right = 1028.0
+margin_bottom = 89.002
+custom_fonts/font = ExtResource( 2 )
+text = "Each ark is controlled by AI, which helps people in their search for a new planet, 
+which would become a new haven for humanity."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton3" type="Button" parent="Panel9"]
+visible = false
+margin_left = 904.763
+margin_top = 21.8193
+margin_right = 985.763
+margin_bottom = 53.8193
+custom_fonts/font = ExtResource( 2 )
+text = "Play"
+
+[node name="Great_Human" type="Sprite" parent="."]
+visible = false
+position = Vector2( 510.747, 281.189 )
+scale = Vector2( 0.658921, 0.619065 )
+texture = ExtResource( 10 )
+
+[node name="Panel10" type="Panel" parent="."]
+visible = false
+margin_left = 1.0
+margin_top = 522.0
+margin_right = 1029.0
+margin_bottom = 600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextEdit" type="Label" parent="Panel10"]
+anchor_bottom = 0.141
+margin_left = 17.0
+margin_top = 15.0
+margin_right = 1028.0
+margin_bottom = 89.002
+custom_fonts/font = ExtResource( 2 )
+text = "Each ark is controlled by AI, which helps people in their search for a new planet, 
+which would become a new haven for humanity."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton3" type="Button" parent="Panel10"]
+visible = false
+margin_left = 904.763
+margin_top = 21.8193
+margin_right = 985.763
+margin_bottom = 53.8193
+custom_fonts/font = ExtResource( 2 )
+text = "Play"
+
+[node name="dead_AI" type="Sprite" parent="."]
+visible = false
+position = Vector2( 515.432, 279.408 )
+scale = Vector2( 0.719202, 0.675699 )
+texture = ExtResource( 11 )
+
+[node name="Panel11" type="Panel" parent="."]
+visible = false
+margin_left = 1.0
+margin_top = 522.0
+margin_right = 1029.0
+margin_bottom = 600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextEdit" type="Label" parent="Panel11"]
+anchor_bottom = 0.141
+margin_left = 17.0
+margin_top = 15.0
+margin_right = 1028.0
+margin_bottom = 89.002
+custom_fonts/font = ExtResource( 2 )
+text = "Each ark is controlled by AI, which helps people in their search for a new planet, 
+which would become a new haven for humanity."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton3" type="Button" parent="Panel11"]
+visible = false
+margin_left = 904.763
+margin_top = 21.8193
+margin_right = 985.763
+margin_bottom = 53.8193
+custom_fonts/font = ExtResource( 2 )
+text = "Play"
+
+[node name="dead_AIself" type="Sprite" parent="."]
+visible = false
+position = Vector2( 519.998, 264.262 )
+scale = Vector2( 0.658092, 0.618285 )
+texture = ExtResource( 13 )
+
+[node name="Panel12" type="Panel" parent="."]
+visible = false
+margin_left = 1.0
+margin_top = 522.0
+margin_right = 1029.0
+margin_bottom = 600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextEdit" type="Label" parent="Panel12"]
+anchor_bottom = 0.141
+margin_left = 17.0
+margin_top = 15.0
+margin_right = 1028.0
+margin_bottom = 89.002
+custom_fonts/font = ExtResource( 2 )
+text = "Each ark is controlled by AI, which helps people in their search for a new planet, 
+which would become a new haven for humanity."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton3" type="Button" parent="Panel12"]
+visible = false
+margin_left = 904.763
+margin_top = 21.8193
+margin_right = 985.763
+margin_bottom = 53.8193
+custom_fonts/font = ExtResource( 2 )
+text = "Play"
+
+[node name="AIgreat" type="Sprite" parent="."]
+position = Vector2( 515.911, 233.972 )
+scale = Vector2( 0.796426, 0.748252 )
+texture = ExtResource( 12 )
+
+[node name="Panel13" type="Panel" parent="."]
+visible = false
+margin_left = 1.0
+margin_top = 522.0
+margin_right = 1029.0
+margin_bottom = 600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextEdit" type="Label" parent="Panel13"]
+anchor_bottom = 0.141
+margin_left = 17.0
+margin_top = 15.0
+margin_right = 1028.0
+margin_bottom = 89.002
+custom_fonts/font = ExtResource( 2 )
+text = "Each ark is controlled by AI, which helps people in their search for a new planet, 
+which would become a new haven for humanity."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton3" type="Button" parent="Panel13"]
+visible = false
+margin_left = 904.763
+margin_top = 21.8193
+margin_right = 985.763
+margin_bottom = 53.8193
+custom_fonts/font = ExtResource( 2 )
+text = "Play"

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/aidead.mp3-000aa6bbc745f66511897aa14b7d4de2.mp3str"
+
+[deps]
+
+source_file="res://resources/Sounds/aidead.mp3"
+dest_files=[ "res://.import/aidead.mp3-000aa6bbc745f66511897aa14b7d4de2.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/ui/navigation_window/navigation_window_star.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/star.png" type="Texture" id=2]
+[ext_resource path="res://scenes/ui/space_object_passport.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 15.0
@@ -9,6 +10,7 @@ radius = 15.0
 [node name="Area2D" type="Area2D"]
 script = ExtResource( 1 )
 sprite_path = NodePath("Sprite")
+passport_scene = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
