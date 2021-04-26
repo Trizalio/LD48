@@ -4,7 +4,7 @@ var star_scene = preload("res://scenes/ui/navigation_window/navigation_window_st
 const STAR_STATUS = {
 	CURRENT = "#FF98FB98",
 	REACHABLE = "#FFFFFFFF",
-	VISITED = "#33FFFFFF"
+	VISITED = "#BBBBBBBB"
 }
 
 var stars_data = [
@@ -34,15 +34,20 @@ func _ready():
 	var stars = StarMap.get_stars();
 	var projectResolution = get_viewport().size;
 	var star_scale = StarMap.get_scale();
-	var current_star = stars[0];
-	var offset;
+	var current_star = Ship.get_current_star()
+	var offset = (projectResolution / 2 - current_star.location * star_scale);
 	var random_number_generator = RandomNumberGenerator.new();
 	var reachable_stars = Ship.get_reachable_stars();
+	var map_scale = StarMap.get_scale()
 	for star_data in stars:
+		var range_from_current_start = star_data.location.distance_to(current_star.location);
+		if range_from_current_start > StarMap.get_max_range():
+			continue
 		var star = star_scene.instance();
-		star.scale = Vector2(0.2, 0.2);
+		star.scale = Vector2(0.3, 0.3);
 		add_child(star);
 		star.set_data(star_data);
+		
 		if reachable_stars.has(star_data):
 			star.set_color(STAR_STATUS.REACHABLE);
 			star.set_avaliability(true);
@@ -52,7 +57,7 @@ func _ready():
 			star.set_color(STAR_STATUS.CURRENT);
 			star.scale = Vector2(0.5, 0.5);
 		var location = star_data.location;
-		star.set_position(star_data.location * 50 + (projectResolution / 2 - current_star.location));
+		star.set_position(star_data.location * map_scale + offset);
 		random_number_generator.randomize();
 		star.rotate(random_number_generator.randf_range(0, 360));
 		#	for data in stars_data:
