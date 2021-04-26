@@ -90,6 +90,9 @@ func _ready():
 
 func get_actions() -> Array:
 	return ['Jump', 'Recicle colonists', 'scan stars', 'scan planet', "colonise"]
+	
+func do_action(action):
+	print('do_action: ', action)
 
 func get_star_path():
 	return visited_stars

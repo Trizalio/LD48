@@ -1,6 +1,6 @@
 extends Node2D
 
-signal action_clicked
+signal action_clicked (value)
 
 var container_class = preload("res://scenes/ui/CircularContainer.gd")
 var menu = null
@@ -30,6 +30,7 @@ func _ready():
 	for action in actions:
 		var button = Button.new()
 		button.text = action
+		# reemit button pressed as new action_clicked signal
 		menu.add_child(button)
 		
 #	print('min:', menu.get_minimum_size())
