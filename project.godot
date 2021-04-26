@@ -29,8 +29,8 @@ config/icon="res://icon.png"
 Ship="*res://scripts/singletones/ship.gd"
 StarMap="*res://scripts/singletones/star_map.gd"
 SceneChanger="*res://scripts/singletones/scene_changer.gd"
-UiController="*res://scripts/singletones/ui_controller.gd"
 Animator="*res://scripts/singletones/animator.gd"
+UiController="*res://scripts/singletones/ui_controller.gd"
 
 [physics]
 
