@@ -57,13 +57,16 @@ func _ready():
 	shipe_rotating_around = star
 	ship_inst.connect("close_all",self, "close_passports")
 	star.connect("close_all",self, "close_passports")
+#	ship_inst.set_scale(Vector2(1.5, 1.5))
 #	kwargs = {"test":2, "animation":"terrestrial planet"} 
 	var a 
 	for planet_info in star_info.planets:
+
 #		print(i)
 #		var planet = load("res://scenes/ui/space_objects/planet.tscn")
 #		var planet_ = load("res://scenes/ui/space_objects/planet.tscn")
 		var planet = space_object_preload.instance()
+		kwargs = {}
 		kwargs['animation'] = planet_info.type_name
 #		print(planet_info.type_name)
 		kwargs['frame_seed'] = planet_info.frame_seed
@@ -173,7 +176,7 @@ func get_random():
 func move_ship_to(move_to):
 #	if move_to not in space_obj_info_to_instanc :
 #		print("aaiaiiai")
-	print("moving to: " , move_to)
+	print("moving to: " , move_to.name_)
 	shipe_rotating_around.remove_child(ship_inst)
 	var inst = space_obj_info_to_instanc[move_to]
 	inst.add_child(ship_inst)

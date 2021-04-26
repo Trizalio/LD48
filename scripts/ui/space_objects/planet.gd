@@ -11,6 +11,7 @@ var got_pasport = false
 var passport_ = preload("res://scenes/ui/space_object_passport.tscn")
 var all_kwargs = {}
 signal close_all
+var space_object_info
 enum OBGECT_TYPES{
   star,
   ship,
@@ -57,6 +58,8 @@ func init_sapce_obj(kwargs, _radius, _objecy_type, _rotation_speed):
 	var clickable_ = load("res://scenes/ui/utils/clicable.tscn")
 	var clickable_inst = clickable_.instance()
 	rand_int_start_pos_offset = kwargs["rand_int_start_pos_offset"]
+	if objecy_type != "ship":
+		space_object_info = kwargs["space_object_info"]
 	all_kwargs = kwargs
 	clickable_inst.connect("clicked", self, "open_passport")
 	var number_of_framse = clickable_inst.animate_sprite.get_sprite_frames().get_frame_count(kwargs["animation"])
@@ -131,7 +134,7 @@ func draw_planet_menu():
 	if planet_menu != null:
 		print('assert failed: attempt to create new ship_menu, while old exists; close old')
 		close_ship_menu()
-	var space_object_info = all_kwargs["space_object_info"]
+#	var space_object_info = all_kwargs["space_object_info"]
 #	var actions = Ship.get_actions()
 	planet_menu = circular_menu_class.instance()
 	var actions = [ "move",
@@ -142,6 +145,7 @@ func draw_planet_menu():
 	,get_str_or_none("atmosphere:" , space_object_info.atmosphere)
 	,get_str_or_none("resources: ", space_object_info.resources)
 	,get_str_or_none("life: " ,space_object_info.life)
+	,"type_name:  " ,space_object_info.type_name
 	
 	]
 	
