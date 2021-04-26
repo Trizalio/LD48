@@ -51,11 +51,12 @@ func _ready():
 		if reachable_stars.has(star_data):
 			star.set_color(STAR_STATUS.REACHABLE);
 			star.set_avaliability(true);
+			star.scale = Vector2(0.4, 0.4);
 		else:
 			star.set_color(STAR_STATUS.VISITED)
 		if star_data == current_star:
 			star.set_color(STAR_STATUS.CURRENT);
-			star.scale = Vector2(0.5, 0.5);
+			star.scale = Vector2(0.6, 0.6);
 		var location = star_data.location;
 		star.set_position(star_data.location * map_scale + offset);
 		random_number_generator.randomize();

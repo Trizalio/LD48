@@ -111,6 +111,11 @@ func do_action(action: String, source=null):
 	if action == 'scan planet':
 		if current_object != null:
 			current_object.scan()
+			emit_signal("notification", "Scan complete", ["ok"])
+		
+	if action == 'colonise':
+		if current_object != null:
+			emit_signal("notification", "Are you shure", ["Yes", "No"])
 		
 #		SceneChanger.current_scene.get_node('CanvasLayer').add_child(star_map_class.instance())
 
@@ -143,3 +148,6 @@ func jump(destination_star):
 	
 func get_current_star():
 	return current_star
+
+func notification_result(result):
+	pass
