@@ -153,8 +153,12 @@ func draw_planet_menu():
 #	var life: float = -1
 	planet_menu.init(actions, 1, true)
 	planet_menu.connect("action_clicked_2",self, "close_passport")
+	planet_menu.connect("action_clicked", self, "planet_menu_clicked", [space_object_info])
 	planet_menu.set_scale(Vector2(2.2, 2.2))
 	self.add_child(planet_menu)
+	
+func planet_menu_clicked(action, type, planet_info):
+	Ship.move_ship_to(planet_info)
 	
 func close_planet_menu():
 	if planet_menu != null:

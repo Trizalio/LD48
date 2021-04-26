@@ -20,6 +20,8 @@ var shipe_rotating_around
 var space_obj_info_to_instanc = {}
 # Called when the node enters the scene tree for the first time.
 func _ready():
+#	move_ship_to
+	Ship.connect("move_ship_to", self, "move_ship_to")
 	rng.randomize()
 	var my_random_number = rng.randi_range(2, 5)
 #	my_random_number = 0
@@ -167,6 +169,7 @@ func move_ship_to(move_to):
 	var inst = space_obj_info_to_instanc[move_to]
 	inst.add_child(ship_inst)
 	shipe_rotating_around = inst
+	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
