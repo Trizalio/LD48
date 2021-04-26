@@ -1,6 +1,7 @@
 extends Node2D
 
 signal action_clicked (value)
+signal action_clicked_2 
 
 var container_class = preload("res://scenes/ui/CircularContainer.gd")
 #var clickable_ = load("res://scenes/ui/utils/clicable.tscn")
@@ -61,7 +62,8 @@ func is_presed(action):
 	if is_planet:
 		type = "planet"
 	emit_signal("action_clicked", [action, type])	
-	print("im pressed", action, " ", type)
+	emit_signal("action_clicked_2")	
+#	print("im pressed", action, " ", type)
 #func _input(event):
 #	if event is InputEventMouseButton \
 #	and event.button_index == BUTTON_LEFT \
