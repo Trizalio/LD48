@@ -62,8 +62,11 @@ func is_presed(action):
 	if is_planet:
 		type = "planet"
 	emit_signal("action_clicked", [action, type])	
+#	emit_signal("action_clicked", [action, type])	
+	print("im pressed", action, " ", type)
 	emit_signal("action_clicked_2")	
 #	print("im pressed", action, " ", type)
+	Ship.do_action(action, type)
 #func _input(event):
 #	if event is InputEventMouseButton \
 #	and event.button_index == BUTTON_LEFT \

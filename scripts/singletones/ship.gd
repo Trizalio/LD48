@@ -95,15 +95,20 @@ func get_actions() -> Array:
 	actions = ['jump']
 	return actions
 
+var star_map_class = preload('res://scenes/ui/navigation_window/navigation_window.tscn') 
 	
 func do_action(action: String, source=null):
 	print('do_action: ', action, ' by: ', source)
+	if action == 'jump':
+		SceneChanger.goto_scene('res://scenes/ui/navigation_window/navigation_window.tscn')
+		
+		
 
 func get_star_path():
 	return visited_stars
 	
 func get_jump_range():
-	return 3
+	return 2.5
 	
 func get_reachable_stars():
 	var all_stars = StarMap.get_stars()
@@ -118,6 +123,7 @@ func jump(destination_star):
 	visited_stars.append(current_star)
 	current_star = destination_star
 	StarMap.move_to_star(destination_star)
+	SceneChanger.goto_scene('res://scenes/ui/main_scene.tscn')
 	
 func get_current_star():
 	return current_star
