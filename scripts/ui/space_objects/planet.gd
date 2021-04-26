@@ -142,7 +142,7 @@ func draw_planet_menu():
 #	var space_object_info = all_kwargs["space_object_info"]
 #	var actions = Ship.get_actions()
 	planet_menu = circular_menu_class.instance()
-	var actions = [ ["move", Color( 0, 0.39, 0, 1 )]
+	var actions = [ ["move", Color( 0.96, 0.96, 0.96, 1 )]
 #		"name: " + String(space_object_info.name_)
 	,[get_str_or_none("gravity: " ,space_object_info.gravity), get_colore(space_object_info.gravity)]
 	,[get_str_or_none("temperature: ", space_object_info.temperature) , get_colore(space_object_info.temperature)]
