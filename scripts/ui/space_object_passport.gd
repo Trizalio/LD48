@@ -1,11 +1,13 @@
 extends Control
 
+export (NodePath) var title_label_path;
 export (NodePath) var tp_label_path;
 export (NodePath) var gg_label_path;
 export (NodePath) var ig_label_path;
 export (NodePath) var dp_label_path;
 export (NodePath) var cb_path;
 
+var _title_label: Label;
 var _tp_label: Label;
 var _gg_label: Label;
 var _ig_label: Label;
@@ -14,6 +16,7 @@ var _cb_instance: AnimatedSprite;
 var _data: StarMap.Star;
 
 func _ready():
+	_title_label = get_node(title_label_path);
 	_tp_label = get_node(tp_label_path);
 	_gg_label = get_node(gg_label_path);
 	_ig_label = get_node(ig_label_path);
@@ -29,6 +32,7 @@ func set_data(data):
 	var frames_count = _cb_instance.get_sprite_frames().get_frame_count('star');
 	_data = data;
 	_cb_instance.set_frame(data.frame_seed % frames_count);
+	_title_label.text = data.name_;
 
 func filter_count(count):
 	if count >= 0:

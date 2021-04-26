@@ -20,6 +20,7 @@ script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+title_label_path = NodePath("Panel/VBoxContainer/VBoxContainer5/VBoxContainer/Title")
 tp_label_path = NodePath("Panel/VBoxContainer/VBoxContainer5/VBoxContainer2/HBoxContainer/VBoxContainer2/terrestrial_p_label")
 gg_label_path = NodePath("Panel/VBoxContainer/VBoxContainer5/VBoxContainer2/HBoxContainer/VBoxContainer2/gas_giants_label")
 ig_label_path = NodePath("Panel/VBoxContainer/VBoxContainer5/VBoxContainer2/HBoxContainer/VBoxContainer2/ice_giants_label")
