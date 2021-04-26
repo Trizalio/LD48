@@ -35,6 +35,7 @@ class Planet:
 
 
 class Star:
+	var name_: String
 	var location: Vector2
 	var frame_seed: int
 	var terrestrial_planets: int = -1
@@ -42,7 +43,8 @@ class Star:
 	var ice_giants: int = -1
 	var dwarf_planets: int = -1
 	
-	func _init(_location: Vector2):
+	func _init(_name: String, _location: Vector2):
+		name_ = _name
 		location = _location
 		frame_seed = randi()
 		
@@ -84,7 +86,7 @@ func generate_stars_around_star(star: Star):
 #				print('missing')
 				var shift = Vector2(rand_range(-deviation, deviation), rand_range(-deviation, deviation))
 #				print('missing; shift: ', shift)
-				var new_star = Star.new(Vector2(i, j) + shift)
+				var new_star = Star.new("S-" +str(i)+str(j), Vector2(i, j) + shift)
 				cell_location_to_star[location] = new_star
 			else:
 #				print("present", i, j)
@@ -93,7 +95,7 @@ func generate_stars_around_star(star: Star):
 func generate_new_map():
 	print('StarMap.generate_new_map start')
 	cell_location_to_star = {}
-	var first_star = Star.new(Vector2(0, 0))
+	var first_star = Star.new("S-00", Vector2(0, 0))
 	cell_location_to_star[Vector2(0, 0)] = first_star
 	generate_stars_around_star(first_star)
 	return first_star
@@ -111,7 +113,7 @@ func get_star_system_info(star: Star) -> StarSystem:
 	if not _start_to_star_system.has(star):
 		
 		discover_star(star)
-		var system_star = SystemStar.new("star-" + str(star.frame_seed), star.frame_seed)
+		var system_star = SystemStar.new(star.name_, star.frame_seed)
 		var planets: Array = []
 		var last_range: float = 0
 		for i in range(star.terrestrial_planets):
