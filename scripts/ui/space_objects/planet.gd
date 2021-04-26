@@ -141,7 +141,7 @@ func draw_planet_menu():
 #	var atmosphere: float = -1
 #	var resources: float = -1
 #	var life: float = -1
-	planet_menu.init(actions, 1)
+	planet_menu.init(actions, 1, true)
 	self.add_child(planet_menu)
 	
 func close_planet_menu():

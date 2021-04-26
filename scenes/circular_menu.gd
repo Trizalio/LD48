@@ -9,10 +9,11 @@ var closing_in_progress = false
 
 var actions = null
 var duration = null
-#var is_planet = false
-func init(_actions: Array, _duration: float):
+var is_planet = false
+func init(_actions: Array, _duration: float, _is_planet:bool = false):
 	actions = _actions
 	duration = _duration
+	is_planet = _is_planet
 
 func close_menu():
 	if menu == null:
@@ -56,8 +57,11 @@ func _ready():
 
 
 func is_presed(action):
-	emit_signal("action_clicked", action)
-	print("im pressed", action)
+	var type = "ship"
+	if is_planet:
+		type = "planet"
+	emit_signal("action_clicked", [action, type])	
+	print("im pressed", action, " ", type)
 #func _input(event):
 #	if event is InputEventMouseButton \
 #	and event.button_index == BUTTON_LEFT \
