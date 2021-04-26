@@ -83,13 +83,14 @@ func open_passport():
 		elif objecy_type == "planet":
 			draw_planet_menu()
 		else:
-			var passport = passport_.instance()
-	#		print(_x_coord, " ",  _y_coord)
-		#	passport.rect_global_position = Vector2(_x_coord, _y_coord)
-		#	passport.rect_position = Vector2(_x_coord, _y_coord)
-	#		print(" got ckicked")
-			current_passport = passport
-			self.add_child(passport)
+			pass
+#			var passport = passport_.instance()
+#	#		print(_x_coord, " ",  _y_coord)
+#		#	passport.rect_global_position = Vector2(_x_coord, _y_coord)
+#		#	passport.rect_position = Vector2(_x_coord, _y_coord)
+#	#		print(" got ckicked")
+#			current_passport = passport
+#			self.add_child(passport)
 		got_pasport = true
 		
 		
