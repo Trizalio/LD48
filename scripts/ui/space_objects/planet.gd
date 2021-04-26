@@ -20,6 +20,10 @@ enum OBGECT_TYPES{
 var objecy_type
 var current_passport
 
+# t -10 + 25 green
+# t <10 >25 red
+
+
 #var screenWidth = ProjectSettings.get_setting("display/window/size/width")
 #var screenHights = ProjectSettings.get_setting("display/window/size/height")
 func _ready():
@@ -137,14 +141,14 @@ func draw_planet_menu():
 #	var space_object_info = all_kwargs["space_object_info"]
 #	var actions = Ship.get_actions()
 	planet_menu = circular_menu_class.instance()
-	var actions = [ "move",
-		"name: " + String(space_object_info.name_)
-	, get_str_or_none("gravity: " ,space_object_info.gravity)
-	,get_str_or_none("temperature: ", space_object_info.temperature)
-	,get_str_or_none("water: ", space_object_info.water)
-	,get_str_or_none("atmosphere:" , space_object_info.atmosphere)
-	,get_str_or_none("resources: ", space_object_info.resources)
-	,get_str_or_none("life: " ,space_object_info.life)
+	var actions = [ ["move", Color( 0, 0.39, 0, 1 )]
+#		"name: " + String(space_object_info.name_)
+	,[get_str_or_none("gravity: " ,space_object_info.gravity), get_colore(space_object_info.gravity)]
+	,[get_str_or_none("temperature: ", space_object_info.temperature) , get_colore(space_object_info.temperature)]
+	,[get_str_or_none("water: ", space_object_info.water), get_colore(space_object_info.water)]
+	,[get_str_or_none("atmosphere:" , space_object_info.atmosphere), get_colore(space_object_info.atmosphere)]
+#	,get_str_or_none("resources: ", space_object_info.resources)
+#	,get_str_or_none("life: " ,space_object_info.life)
 #	,"type_name:  " ,space_object_info.type_name
 	
 	]
@@ -177,9 +181,29 @@ func close_planet_menu():
 func get_str_or_none(name_, value):
 	if value == -1:
 		return name_ + ": unknown"
-	else:
-		return name_ + ": " + String(value)
+	elif value <= 0.25:
+		return name_ + ": bad"
+	elif value > 0.25 and  value <= 0.5:
+		return name_ + ": risky"
+	elif value > 0.5 and  value <= 0.75:
+		return name_ + ": acceptable"
+	elif value > 0.75 and  value <= 1:
+		return name_ + ": good"
 	pass
+func get_colore( value):
+	if value == -1:
+		return Color( 0.5, 0.5, 0.5, 1 )
+	elif value <= 0.25:
+		return Color( 0.55, 0, 0, 1 )
+	elif value > 0.25 and  value <= 0.5:
+		return Color( 1, 0.65, 0, 1 )
+	elif value > 0.5 and  value <= 0.75:
+		return Color( 1, 1, 0.88, 1 )
+	elif value > 0.75 and  value <= 1:
+		return Color( 0, 1, 0.5, 1 )
+	pass
+	
+	
 #class PlanetInfo:
 #	var type: int = 0 
 #	var know_info: Array = []

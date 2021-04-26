@@ -34,9 +34,13 @@ func _ready():
 
 	for action in actions:
 		var button = Button.new()
-		if action == "move":
-			button.modulate = Color( 0, 0.39, 0, 1 )
-		button.text = action
+		if is_planet:
+			var text_ = action[0]
+			var colore = action[1]
+			button.modulate = colore
+			button.text = text_
+		else:
+			button.text = action
 		# reemit button pressed as new action_clicked signal
 #		var clickable_inst = clickable_.instance()
 #		clickable_inst.init_clicable("", 0, false)
@@ -63,11 +67,13 @@ func is_presed(action):
 	var type = "ship"
 	if is_planet:
 		type = "planet"
+		action = action[0]
 	emit_signal("action_clicked", action, type)	
 #	emit_signal("action_clicked", [action, type])	
 	print("im pressed", action, " ", type)
 	emit_signal("action_clicked_2")	
 #	print("im pressed", action, " ", type)
+	
 	Ship.do_action(action, type)
 #func _input(event):
 #	if event is InputEventMouseButton \
