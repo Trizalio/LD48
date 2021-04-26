@@ -61,3 +61,6 @@ func _on_TextureButton10_pressed():
 	$Panel13.visible = true
 	$Panel13/TextEdit.visible = true
 	$AI_human2.play()
+
+func reset_game():
+	SceneChanger.goto_scene("res://scenes/ui/intro.tscn");
