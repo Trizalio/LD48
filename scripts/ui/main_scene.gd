@@ -102,7 +102,7 @@ func close_passports():
 	
 
 func _process(delta):
-	$Camera2D.position = (get_viewport().get_mouse_position() + ship_inst.global_position)/2
+	$Camera2D.position = get_viewport().get_mouse_position() + ship_inst.global_position - star.global_position
 #	print(global_position())
 #	$Camera2D.position = ship_inst.global_position
 	var star_objs =  star.get_children()
