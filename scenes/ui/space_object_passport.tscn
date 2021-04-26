@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://resources/fonts/bebas-neue-font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://scripts/ui/space_object_passport.gd" type="Script" id=3]
 
 [node name="Control" type="Control"]
 anchor_left = 0.5
@@ -13,9 +14,14 @@ margin_top = -203.5
 margin_right = 128.5
 margin_bottom = 203.5
 rect_min_size = Vector2( 257, 407 )
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+tp_label_path = NodePath("Panel/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer2/terrestrial_p_label")
+gg_label_path = NodePath("Panel/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer2/gas_giants_label")
+ig_label_path = NodePath("Panel/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer2/ice_giants_label")
+dp_label_path = NodePath("Panel/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer2/dwarf_plantes_label")
 
 [node name="Panel" type="Panel" parent="."]
 modulate = Color( 1, 1, 1, 0.917647 )
@@ -164,3 +170,5 @@ margin_bottom = 32.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "LEAP"
+
+[connection signal="button_down" from="Panel/VBoxContainer/VBoxContainer3/Button" to="." method="on_button_click"]

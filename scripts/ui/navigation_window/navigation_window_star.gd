@@ -3,6 +3,8 @@ extends Area2D
 export (NodePath) var sprite_path;
 export (PackedScene) var passport_scene;
 var _data: StarMap.Star;
+var _is_available: bool;
+
 #func _input_event(viewport, event, shape_idx):
 #	print(viewport, event, shape_idx);
 #	print('click');
@@ -19,6 +21,9 @@ func set_color(value):
 func set_data(data):
 	_data = data;
 
+func set_avaliability(value):
+	_is_available = value;
+
 func _input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.is_pressed():
+	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.is_pressed() and _is_available:
 		UiController.open_space_object_passport(_data);

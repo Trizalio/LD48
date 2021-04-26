@@ -45,6 +45,7 @@ func _ready():
 		star.set_data(star_data);
 		if reachable_stars.has(star_data):
 			star.set_color(STAR_STATUS.REACHABLE);
+			star.set_avaliability(true);
 		else:
 			star.set_color(STAR_STATUS.VISITED)
 		if star_data == current_star:
