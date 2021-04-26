@@ -94,19 +94,27 @@ var actions = []
 func get_actions() -> Array:
 #	actions.append('jump' + str(len(actions)))
 #	return ['Jump', 'Recicle colonists', 'scan stars', 'scan planet', "colonise"]
-	actions = ['jump', "notification"]
+	actions = ['jump']
 	if current_object != null:
 		actions.append('scan planet')
+		actions.append('colonise')
 	return actions
 
 var star_map_class = preload('res://scenes/ui/event_window.tscn') 
-	
+
+
+var colonisation_text = (
+	"After years of wandering through space, you and your people are exhausted.\n"
+	+ "A thought comes to your mind. Perhaps here you will find a new home.\n"
+	+ "A place you were dreaming about. A breath of fresh air. Serenity.\n"
+	+ "Are you sure you want to colonize this planet?"
+)
 func do_action(action: String, source=null):
 	print('do_action: ', action, ' by: ', source)
 	if action == 'jump':
 		SceneChanger.goto_scene('res://scenes/ui/navigation_window/navigation_window.tscn')
-	if action == 'notification':
-		emit_signal("notification", "test", ["1", "2", "3"])
+#	if action == 'notification':
+#		emit_signal("notification", "test", ["1", "2", "3"])
 		
 	if action == 'scan planet':
 		if current_object != null:
@@ -115,7 +123,8 @@ func do_action(action: String, source=null):
 		
 	if action == 'colonise':
 		if current_object != null:
-			emit_signal("notification", "Are you shure", ["Yes", "No"])
+			emit_signal("notification", 
+			colonisation_text, ["Yes", "No"])
 		
 #		SceneChanger.current_scene.get_node('CanvasLayer').add_child(star_map_class.instance())
 
@@ -136,7 +145,7 @@ func finish_game(planet_info):
 	
 	SceneChanger.goto_scene('res://scenes/ui/final_scene.tscn');
 	yield(SceneChanger, "scene_changed");
-	var root = get_tree().get_root();
+	var root = SceneChanger.current_scene;
 	if (success_result < 0.2):
 		root._on_TextureButton1_pressed(); #bad
 	elif (success_result < 0.4):
@@ -172,5 +181,7 @@ func jump(destination_star):
 func get_current_star():
 	return current_star
 
-func notification_result(result):
-	pass
+func notification_result(text, result):
+	print('notification_result: ', text, " result:", result)
+	if text == colonisation_text and result == 1:
+		finish_game(current_object)

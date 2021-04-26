@@ -6,6 +6,7 @@ export (NodePath) var choices_container_path;
 var font = preload("res://resources/fonts/bebas-neue-font.tres");
 var _description_label: RichTextLabel;
 var _choices_container: VBoxContainer;
+var _text = null
 
 func _ready():
 	_description_label = get_node(description_path);
@@ -15,6 +16,7 @@ func _ready():
 
 func set_description(value: String):
 	_description_label.text = value;
+	_text = value
 
 func set_choices(value: Array):
 	for i in range(value.size()):
@@ -27,5 +29,5 @@ func set_choices(value: Array):
 		_choices_container.add_child(button);
 
 func on_choice_click(index: int):
-	Ship.notification_result(index)
+	Ship.notification_result(_text, index)
 	get_parent().remove_child(self)
