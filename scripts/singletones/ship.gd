@@ -95,9 +95,14 @@ func get_actions() -> Array:
 	actions = ['jump']
 	return actions
 
+var star_map_class = preload('res://scenes/ui/navigation_window/navigation_window.tscn') 
 	
 func do_action(action: String, source=null):
 	print('do_action: ', action, ' by: ', source)
+	if action == 'jump':
+		SceneChanger.current_scene.add_child(star_map_class.instance())
+		
+		
 
 func get_star_path():
 	return visited_stars
