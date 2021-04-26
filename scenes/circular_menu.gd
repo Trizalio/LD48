@@ -22,7 +22,7 @@ func close_menu():
 	print('close menu')
 	closing_in_progress = true
 	Animator.animate(menu, 'animate/percent_visible', 0, duration, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	Animator.animate(menu, 'arrange/start_angle', 0, duration, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+#	Animator.animate(menu, 'arrange/start_angle', 0, duration, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	Animator.remove_with_delay(self, duration)
 
 func _ready():
@@ -35,10 +35,10 @@ func _ready():
 		
 #	print('min:', menu.get_minimum_size())
 #	menu.set_force_squares(true)
-#	menu.set_start_angle_deg(0)
+	menu.set_start_angle_deg(180)
 	menu.set_display_all_at_once(true)
 	menu.set_percent_visible(0)
 	menu.set_position(position - menu.get_minimum_size() / 2)
 	Animator.animate(menu, 'animate/percent_visible', 1, duration, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	Animator.animate(menu, 'arrange/start_angle', 360, duration, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+#	Animator.animate(menu, 'arrange/start_angle', 360, duration, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	add_child(menu)

@@ -23,6 +23,7 @@ var materials: float = 1
 var current_star = null
 var visited_stars = []
 
+
 func new_game():
 	print('Ship.new_game start')
 	front_hull = 1
@@ -87,9 +88,11 @@ func _ready():
 #				if sprite.scale.x > 0.15 and sprite.scale.x < 0.25:
 #					jump(sprite_to_star[sprite])
 #					render_stars()
-
+var actions = []
 func get_actions() -> Array:
-	return ['Jump', 'Recicle colonists', 'scan stars', 'scan planet', "colonise"]
+	actions.append('jump' + str(len(actions)))
+#	return ['Jump', 'Recicle colonists', 'scan stars', 'scan planet', "colonise"]
+	return actions
 	
 func do_action(action):
 	print('do_action: ', action)
