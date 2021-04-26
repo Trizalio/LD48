@@ -125,6 +125,7 @@ func draw_ship_menu():
 	
 	
 func draw_planet_menu():
+
 	if planet_menu != null:
 		print('assert failed: attempt to create new ship_menu, while old exists; close old')
 		close_ship_menu()
@@ -132,12 +133,12 @@ func draw_planet_menu():
 #	var actions = Ship.get_actions()
 	planet_menu = circular_menu_class.instance()
 	var actions = ["name: " + String(space_object_info.name_)
-	, "gravity: " + String(space_object_info.gravity)
-	,"temperature: " + String(space_object_info.temperature)
-	,"water: " + String(space_object_info.water)
-	,"atmosphere:" +  String(space_object_info.atmosphere)
-	,"resources: " + String(space_object_info.resources)
-	,"life: " + String(space_object_info.life)
+	, get_str_or_none("gravity: " ,space_object_info.gravity)
+	,get_str_or_none("temperature: ", space_object_info.temperature)
+	,get_str_or_none("water: ", space_object_info.water)
+	,get_str_or_none("atmosphere:" , space_object_info.atmosphere)
+	,get_str_or_none("resources: ", space_object_info.resources)
+	,get_str_or_none("life: " ,space_object_info.life)
 	, "move"
 	]
 	
@@ -152,6 +153,7 @@ func draw_planet_menu():
 #	var life: float = -1
 	planet_menu.init(actions, 1, true)
 	planet_menu.connect("action_clicked_2",self, "close_passport")
+	planet_menu.set_scale(Vector2(2.2, 2.2))
 	self.add_child(planet_menu)
 	
 func close_planet_menu():
@@ -161,6 +163,12 @@ func close_planet_menu():
 		planet_menu = null
 
 
+func get_str_or_none(name_, value):
+	if value == -1:
+		return "Unknown"
+	else:
+		return name_ + ": " + String(value)
+	pass
 #class PlanetInfo:
 #	var type: int = 0 
 #	var know_info: Array = []
