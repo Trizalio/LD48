@@ -40,7 +40,7 @@ func _input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton \
 	and event.button_index == BUTTON_LEFT \
 	and event.is_pressed():
-		print("got clicked  123123123")
+#		print("got clicked  123123123")
 		emit_signal("clicked")
 #		self.on_click()
 

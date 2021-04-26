@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://resources/fonts/bebas-neue-font.tres" type="DynamicFont" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://scenes/celestial_body.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/ui/space_object_passport.gd" type="Script" id=3]
 
 [node name="Control" type="Control"]
@@ -12,22 +12,27 @@ anchor_bottom = 0.5
 margin_left = -128.5
 margin_top = -203.5
 margin_right = 128.5
-margin_bottom = 203.5
-rect_min_size = Vector2( 257, 407 )
+margin_bottom = 96.5
+rect_min_size = Vector2( 257, 300 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-tp_label_path = NodePath("Panel/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer2/terrestrial_p_label")
-gg_label_path = NodePath("Panel/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer2/gas_giants_label")
-ig_label_path = NodePath("Panel/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer2/ice_giants_label")
-dp_label_path = NodePath("Panel/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer2/dwarf_plantes_label")
+title_label_path = NodePath("Panel/VBoxContainer/VBoxContainer5/VBoxContainer/Title")
+tp_label_path = NodePath("Panel/VBoxContainer/VBoxContainer5/VBoxContainer2/HBoxContainer/VBoxContainer2/terrestrial_p_label")
+gg_label_path = NodePath("Panel/VBoxContainer/VBoxContainer5/VBoxContainer2/HBoxContainer/VBoxContainer2/gas_giants_label")
+ig_label_path = NodePath("Panel/VBoxContainer/VBoxContainer5/VBoxContainer2/HBoxContainer/VBoxContainer2/ice_giants_label")
+dp_label_path = NodePath("Panel/VBoxContainer/VBoxContainer5/VBoxContainer2/HBoxContainer/VBoxContainer2/dwarf_plantes_label")
+cb_path = NodePath("Panel/VBoxContainer/MarginContainer/AnimatedSprite")
 
 [node name="Panel" type="Panel" parent="."]
 modulate = Color( 1, 1, 1, 0.917647 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_bottom = -157.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -39,100 +44,129 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer"]
+[node name="VBoxContainer4" type="VBoxContainer" parent="Panel/VBoxContainer"]
+margin_left = 238.0
 margin_right = 257.0
-margin_bottom = 120.0
-rect_min_size = Vector2( 0, 120 )
-size_flags_horizontal = 3
+margin_bottom = 20.0
+size_flags_horizontal = 8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="Panel/VBoxContainer/VBoxContainer4"]
+margin_right = 19.0
+margin_bottom = 20.0
+text = "x"
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/VBoxContainer"]
+margin_top = 24.0
+margin_right = 257.0
+margin_bottom = 142.0
 size_flags_vertical = 3
 
-[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/VBoxContainer"]
-margin_right = 257.0
-margin_bottom = 67.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-size_flags_stretch_ratio = 1.1
-texture = ExtResource( 2 )
-expand = true
-stretch_mode = 6
+[node name="AnimatedSprite" parent="Panel/VBoxContainer/MarginContainer" instance=ExtResource( 2 )]
+position = Vector2( 68.2275, 3.2189 )
+rotation = 0.0
+scale = Vector2( 0.607018, 0.607018 )
+animation = "star"
+frame = 4
+centered = false
 
-[node name="Label" type="Label" parent="Panel/VBoxContainer/VBoxContainer"]
-margin_top = 71.0
+[node name="VBoxContainer5" type="VBoxContainer" parent="Panel/VBoxContainer"]
+margin_top = 146.0
 margin_right = 257.0
-margin_bottom = 85.0
+margin_bottom = 300.0
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/VBoxContainer5"]
+margin_right = 257.0
+margin_bottom = 49.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+size_flags_stretch_ratio = 20.0
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/VBoxContainer5/VBoxContainer"]
+margin_right = 257.0
+margin_bottom = 14.0
 size_flags_horizontal = 7
+size_flags_vertical = 14
 text = "Star"
 align = 1
 valign = 1
 
-[node name="Title" type="Label" parent="Panel/VBoxContainer/VBoxContainer"]
-margin_top = 89.0
+[node name="Title" type="Label" parent="Panel/VBoxContainer/VBoxContainer5/VBoxContainer"]
+margin_top = 18.0
 margin_right = 257.0
-margin_bottom = 120.0
+margin_bottom = 49.0
 custom_fonts/font = ExtResource( 1 )
 text = "TITLE"
 align = 1
 valign = 1
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/VBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/VBoxContainer/VBoxContainer5"]
 margin_left = 60.0
-margin_top = 124.0
+margin_top = 53.0
 margin_right = 196.0
-margin_bottom = 214.0
+margin_bottom = 121.0
 size_flags_horizontal = 4
-size_flags_vertical = 3
-size_flags_stretch_ratio = 15.0
+size_flags_vertical = 10
+size_flags_stretch_ratio = 1.33
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer5/VBoxContainer2"]
 margin_right = 136.0
 margin_bottom = 68.0
+size_flags_vertical = 0
 alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/VBoxContainer5/VBoxContainer2/HBoxContainer"]
 margin_right = 116.0
 margin_bottom = 68.0
 
-[node name="terrestrial_p_label" type="Label" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer"]
+[node name="terrestrial_p_label" type="Label" parent="Panel/VBoxContainer/VBoxContainer5/VBoxContainer2/HBoxContainer/VBoxContainer"]
+modulate = Color( 0.878431, 0.839216, 0.839216, 1 )
 margin_right = 116.0
 margin_bottom = 14.0
 text = "Terrestrial Planets"
 valign = 1
 
-[node name="gas_giants_label" type="Label" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer"]
+[node name="gas_giants_label" type="Label" parent="Panel/VBoxContainer/VBoxContainer5/VBoxContainer2/HBoxContainer/VBoxContainer"]
+modulate = Color( 0.878431, 0.839216, 0.839216, 1 )
 margin_top = 18.0
 margin_right = 116.0
 margin_bottom = 32.0
 text = "Gas Giants"
 valign = 1
 
-[node name="ice_giants_label" type="Label" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer"]
+[node name="ice_giants_label" type="Label" parent="Panel/VBoxContainer/VBoxContainer5/VBoxContainer2/HBoxContainer/VBoxContainer"]
+modulate = Color( 0.878431, 0.839216, 0.839216, 1 )
 margin_top = 36.0
 margin_right = 116.0
 margin_bottom = 50.0
 text = "Ice Giants"
 valign = 1
 
-[node name="dwarf_plantes_label" type="Label" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer"]
+[node name="dwarf_plantes_label" type="Label" parent="Panel/VBoxContainer/VBoxContainer5/VBoxContainer2/HBoxContainer/VBoxContainer"]
+modulate = Color( 0.878431, 0.839216, 0.839216, 1 )
 margin_top = 54.0
 margin_right = 116.0
 margin_bottom = 68.0
 text = "Dwarf Planets"
 valign = 1
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/VBoxContainer/VBoxContainer5/VBoxContainer2/HBoxContainer"]
 margin_left = 120.0
 margin_right = 136.0
 margin_bottom = 68.0
 size_flags_horizontal = 3
 
-[node name="terrestrial_p_label" type="Label" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer2"]
+[node name="terrestrial_p_label" type="Label" parent="Panel/VBoxContainer/VBoxContainer5/VBoxContainer2/HBoxContainer/VBoxContainer2"]
 margin_right = 16.0
 margin_bottom = 14.0
 text = "21"
 align = 2
 valign = 1
 
-[node name="gas_giants_label" type="Label" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer2"]
+[node name="gas_giants_label" type="Label" parent="Panel/VBoxContainer/VBoxContainer5/VBoxContainer2/HBoxContainer/VBoxContainer2"]
 margin_top = 18.0
 margin_right = 16.0
 margin_bottom = 32.0
@@ -140,7 +174,7 @@ text = "21"
 align = 2
 valign = 1
 
-[node name="ice_giants_label" type="Label" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer2"]
+[node name="ice_giants_label" type="Label" parent="Panel/VBoxContainer/VBoxContainer5/VBoxContainer2/HBoxContainer/VBoxContainer2"]
 margin_top = 36.0
 margin_right = 16.0
 margin_bottom = 50.0
@@ -148,7 +182,7 @@ text = "21"
 align = 2
 valign = 1
 
-[node name="dwarf_plantes_label" type="Label" parent="Panel/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer2"]
+[node name="dwarf_plantes_label" type="Label" parent="Panel/VBoxContainer/VBoxContainer5/VBoxContainer2/HBoxContainer/VBoxContainer2"]
 margin_top = 54.0
 margin_right = 16.0
 margin_bottom = 68.0
@@ -156,19 +190,26 @@ text = "21"
 align = 2
 valign = 1
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="Panel/VBoxContainer"]
-margin_top = 218.0
+[node name="VBoxContainer3" type="VBoxContainer" parent="Panel/VBoxContainer/VBoxContainer5"]
+margin_top = 125.0
 margin_right = 257.0
-margin_bottom = 250.0
+margin_bottom = 154.0
 size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_vertical = 10
 size_flags_stretch_ratio = 5.14
 
-[node name="Button" type="Button" parent="Panel/VBoxContainer/VBoxContainer3"]
+[node name="MarginContainer" type="MarginContainer" parent="Panel/VBoxContainer/VBoxContainer5/VBoxContainer3"]
 margin_right = 257.0
-margin_bottom = 32.0
+margin_bottom = 5.0
+rect_min_size = Vector2( 0, 5 )
+
+[node name="Button" type="Button" parent="Panel/VBoxContainer/VBoxContainer5/VBoxContainer3"]
+margin_top = 9.0
+margin_right = 257.0
+margin_bottom = 29.0
 size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_vertical = 10
 text = "LEAP"
 
-[connection signal="button_down" from="Panel/VBoxContainer/VBoxContainer3/Button" to="." method="on_button_click"]
+[connection signal="button_down" from="Panel/VBoxContainer/VBoxContainer4/Button" to="." method="on_close_button_click"]
+[connection signal="button_down" from="Panel/VBoxContainer/VBoxContainer5/VBoxContainer3/Button" to="." method="on_button_click"]

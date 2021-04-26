@@ -9,6 +9,7 @@ var _y_coord = 0
 var got_pasport = false
 var passport_ = preload("res://scenes/ui/space_object_passport.tscn")
 var all_kwargs = {}
+signal close_all
 enum OBGECT_TYPES{
   star,
   ship,
@@ -16,6 +17,7 @@ enum OBGECT_TYPES{
 }
 var objecy_type
 var current_passport
+
 #var screenWidth = ProjectSettings.get_setting("display/window/size/width")
 #var screenHights = ProjectSettings.get_setting("display/window/size/height")
 func _ready():
@@ -56,7 +58,7 @@ func init_sapce_obj(kwargs, _radius, _objecy_type, _rotation_speed):
 	all_kwargs = kwargs
 	clickable_inst.connect("clicked", self, "open_passport")
 	var number_of_framse = clickable_inst.animate_sprite.get_sprite_frames().get_frame_count(kwargs["animation"])
-	print(number_of_framse)
+#	print(number_of_framse)
 	
 	var frame_number = kwargs["frame_seed"] % number_of_framse
 	clickable_inst.init_clicable(kwargs["animation"], frame_number)
@@ -64,7 +66,8 @@ func init_sapce_obj(kwargs, _radius, _objecy_type, _rotation_speed):
 	self.add_child(clickable_inst)
 
 func open_passport():
-	print("in open_passport")
+#	print("in open_passport")
+	emit_signal("close_all")
 	if not got_pasport:
 		if objecy_type == "ship":
 			draw_ship_menu()
@@ -90,7 +93,11 @@ func close_passport():
 			close_planet_menu()
 		else:
 			self.remove_child(current_passport)
+		
 	got_pasport = false
+#	if got_pasport:
+#		emit_signal("close_all")
+		
 
 
 var circular_menu_class = preload("res://scenes/circular_menu.tscn")
@@ -99,6 +106,7 @@ var planet_menu = null
 
 
 func close_ship_menu():
+	print(" tring to close close_ship_menu")
 	if ship_menu != null:
 		print('close ship_menu')
 		ship_menu.hide()
@@ -112,6 +120,7 @@ func draw_ship_menu():
 	var actions = Ship.get_actions()
 	ship_menu = circular_menu_class.instance()
 	ship_menu.init(actions, 1)
+	ship_menu.connect("action_clicked_2",self, "close_passport")
 	self.add_child(ship_menu)
 	
 	
@@ -142,11 +151,12 @@ func draw_planet_menu():
 #	var resources: float = -1
 #	var life: float = -1
 	planet_menu.init(actions, 1, true)
+	planet_menu.connect("action_clicked_2",self, "close_passport")
 	self.add_child(planet_menu)
 	
 func close_planet_menu():
 	if planet_menu != null:
-		print('close ship_menu')
+		print('close planet_menu')
 		planet_menu.hide()
 		planet_menu = null
 

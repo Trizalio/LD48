@@ -50,6 +50,8 @@ func _ready():
 	ship_inst.init_sapce_obj(kwargs, screenWidth/8, "ship", 0.4)
 	star.add_child(ship_inst)
 	shipe_rotating_around = star
+	ship_inst.connect("close_all",self, "close_passports")
+	star.connect("close_all",self, "close_passports")
 #	kwargs = {"test":2, "animation":"terrestrial planet"} 
 	var a 
 	for planet_info in star_info.planets:
@@ -67,6 +69,7 @@ func _ready():
 #		planet.init_sapce_obj("res://icon.png", screenWidth/2 + i * 100, screenHights/2, "tetetetewwt")
 		planet.init_sapce_obj(kwargs, planet_info.range_from_star, "planet", 0.0005 * planet_info.range_from_star)
 		space_obj_info_to_instanc[planet_info] = planet		
+		planet.connect("close_all",self, "close_passports")
 #		a = planet_info
 #		kwargs = {"test":i, "animation":"gas giants"} 
 #		planet.position = Vector2(screenWidth/2 + i * 100, screenHights/2)
@@ -86,8 +89,19 @@ func _ready():
 #	self.move_ship_to(star_info)
 	pass # Replace with function body.
 
+func close_passports():
+		star.close_passport()
+		var star_planets =  star.get_children()
+		ship_inst.close_passport()
+		for planet in star_planets:
+			if planet is KinematicBody2D:
+#				pass
+				planet.close_passport()
+	
 func _process(delta):
-	$Camera2D.position = (get_viewport().get_mouse_position() + ship_inst.position)/2
+	$Camera2D.position = (get_viewport().get_mouse_position() + ship_inst.global_position)/2
+#	print(global_position())
+#	$Camera2D.position = ship_inst.global_position
 	var star_objs =  star.get_children()
 	for star_related_obj in star_objs:
 #		print(" 123123")
@@ -127,16 +141,16 @@ func _input(event):
 	if event is InputEventMouseButton \
 	and event.button_index == BUTTON_LEFT \
 	and event.is_pressed():
-		var evLocal = make_input_local(event)
+#		var evLocal = make_input_local(event)
 #		if !Rect2(Vector2(0,0),rect_size).has_point(evLocal.position):
 #			print(" nothing clicked")
 #		close_ship_menu()
 #		draw_ship_menu()
 		star.close_passport()
-		var star_planets =  star.get_children()
-		for planet in star_planets:
-			if planet is KinematicBody2D:
-				pass
+#		var star_planets =  star.get_children()
+#		for planet in star_planets:
+#			if planet is KinematicBody2D:
+#				pass
 #				planet.close_passport()
 #	elif event is InputEventMouseMotion:
 #		position = get_global_mouse_position()
