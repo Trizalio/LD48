@@ -22,7 +22,7 @@ _global_script_class_icons={
 
 config/name="ld48"
 run/main_scene="res://scenes/ui/main_menu.tscn"
-config/icon="res://icon.png"
+config/icon="res://project_icon.png"
 
 [autoload]
 
