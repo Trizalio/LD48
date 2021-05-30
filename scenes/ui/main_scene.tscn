@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scripts/ui/main_scene.gd" type="Script" id=1]
 [ext_resource path="res://resources/Sounds/MainScene.wav" type="AudioStream" id=2]
 [ext_resource path="res://resources/Pics/Background/Dark-space-wallpaper-HD.jpg" type="Texture" id=3]
 [ext_resource path="res://resources/Pics/Background/pictures-nebula-space-galaxy-s-48965.jpg" type="Texture" id=4]
 [ext_resource path="res://resources/Pics/Background/maxresdefault.jpg" type="Texture" id=5]
+[ext_resource path="res://scenes/ui/ship_state.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Space"
@@ -35,9 +36,13 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 0.717647 ), Color( 1, 1, 1, 0.501961 ), Color( 1, 1, 1, 0.454902 ), Color( 1, 1, 1, 0.501961 ), Color( 1, 1, 1, 0.717647 ) ]
 }
 
-[node name="Node2D" type="Node2D"]
-position = Vector2( -1, 0 )
+[node name="Node2D" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="back" type="Sprite" parent="."]
 modulate = Color( 0.564706, 0.501961, 0.517647, 0.521569 )
@@ -73,3 +78,5 @@ method_call_mode = 1
 anims/Space = SubResource( 1 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Node2D" parent="CanvasLayer" instance=ExtResource( 6 )]

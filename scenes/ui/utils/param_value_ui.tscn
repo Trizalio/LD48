@@ -1,0 +1,152 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://resources/fonts/Bitwise.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://scenes/ui/utils/param_value_ui.gd" type="Script" id=2]
+[ext_resource path="res://scenes/ui/utils/param_value_ui.tres" type="StyleBox" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 30
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0, 1, 0, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+expand_margin_top = 4.0
+shadow_color = Color( 0, 1, 0, 0.156863 )
+shadow_size = 10
+anti_aliasing_size = 3
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.696598, 0.812469, 0, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+expand_margin_top = 4.0
+shadow_color = Color( 0.696598, 0.812469, 0, 0.156863 )
+shadow_size = 10
+anti_aliasing_size = 3
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 1, 0, 0, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+expand_margin_top = 4.0
+shadow_color = Color( 1, 0, 0, 0.156863 )
+shadow_size = 10
+anti_aliasing_size = 3
+
+[node name="param_value_ui" type="HBoxContainer"]
+margin_right = 177.0
+margin_bottom = 41.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+fullness = 0.519
+base_style = ExtResource( 3 )
+yellow_brightness = 2.5
+
+[node name="left_center_container" type="CenterContainer" parent="."]
+margin_right = 80.0
+margin_bottom = 41.0
+
+[node name="param_label" type="Label" parent="left_center_container"]
+margin_top = 5.0
+margin_right = 80.0
+margin_bottom = 36.0
+custom_fonts/font = SubResource( 1 )
+text = "STUB"
+uppercase = true
+
+[node name="right_center_container" type="CenterContainer" parent="."]
+margin_left = 84.0
+margin_right = 163.0
+margin_bottom = 41.0
+
+[node name="parts_container" type="HBoxContainer" parent="right_center_container"]
+margin_top = 8.0
+margin_right = 79.0
+margin_bottom = 33.0
+custom_constants/separation = 1
+
+[node name="value_1" type="ProgressBar" parent="right_center_container/parts_container"]
+margin_right = 15.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 15, 25 )
+custom_styles/bg = SubResource( 2 )
+value = 5.0
+rounded = true
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="value_2" type="ProgressBar" parent="right_center_container/parts_container"]
+margin_left = 16.0
+margin_right = 31.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 15, 25 )
+custom_styles/bg = SubResource( 2 )
+value = 5.0
+rounded = true
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="value_3" type="ProgressBar" parent="right_center_container/parts_container"]
+margin_left = 32.0
+margin_right = 47.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 15, 25 )
+custom_styles/bg = SubResource( 3 )
+value = 5.0
+rounded = true
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="value_4" type="ProgressBar" parent="right_center_container/parts_container"]
+margin_left = 48.0
+margin_right = 63.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 15, 25 )
+custom_styles/bg = SubResource( 4 )
+value = 5.0
+rounded = true
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="value_5" type="ProgressBar" parent="right_center_container/parts_container"]
+margin_left = 64.0
+margin_right = 79.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 15, 25 )
+custom_styles/bg = SubResource( 4 )
+value = 5.0
+rounded = true
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
