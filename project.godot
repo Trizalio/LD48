@@ -13,9 +13,27 @@ _global_script_classes=[ {
 "class": "IntroStep",
 "language": "GDScript",
 "path": "res://resources/intro/intro_step.gd"
+}, {
+"base": "Resource",
+"class": "ShipResources",
+"language": "GDScript",
+"path": "res://scripts/ship/ship_resources.gd"
+}, {
+"base": "Resource",
+"class": "ShipState",
+"language": "GDScript",
+"path": "res://scripts/ship/ship_state.gd"
+}, {
+"base": "Node",
+"class": "StoryStepNode",
+"language": "GDScript",
+"path": "res://scripts/stories/story_node.gd"
 } ]
 _global_script_class_icons={
-"IntroStep": ""
+"IntroStep": "",
+"ShipResources": "",
+"ShipState": "",
+"StoryStepNode": ""
 }
 
 [application]
@@ -31,6 +49,7 @@ StarMap="*res://scripts/singletones/star_map.gd"
 SceneChanger="*res://scripts/singletones/scene_changer.gd"
 UiController="*res://scripts/singletones/ui_controller.gd"
 Animator="*res://scripts/singletones/animator.gd"
+StoryTeller="*res://scripts/singletones/story_teller.gd"
 
 [physics]
 

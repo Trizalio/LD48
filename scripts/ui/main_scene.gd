@@ -32,7 +32,8 @@ func render_notification(description: String, choices: Array):
 func _ready():
 #	move_ship_to
 	Ship.connect("move_ship_to", self, "move_ship_to")
-	Ship.connect("notification", self, "render_notification")
+	#Ship.connect("notification", self, "render_notification")
+	StoryTeller.connect("notification", self, "render_notification")
 	rng.randomize()
 #	var my_random_number = rng.randi_range(2, 5)
 #	my_random_number = 0

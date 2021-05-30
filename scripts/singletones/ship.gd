@@ -94,7 +94,7 @@ var actions = []
 func get_actions() -> Array:
 #	actions.append('jump' + str(len(actions)))
 #	return ['Jump', 'Recicle colonists', 'scan stars', 'scan planet', "colonise"]
-	actions = ['jump']
+	actions = ['jump', '#REMOVE_ME']
 	if current_object != null:
 		actions.append('scan planet')
 		actions.append('colonise')
@@ -125,6 +125,9 @@ func do_action(action: String, source=null):
 		if current_object != null:
 			emit_signal("notification", 
 			colonisation_text, ["Yes", "No"])
+			
+	if action == '#REMOVE_ME':
+		StoryTeller.tell_me_a_story("Test")
 		
 #		SceneChanger.current_scene.get_node('CanvasLayer').add_child(star_map_class.instance())
 

@@ -29,5 +29,5 @@ func set_choices(value: Array):
 		_choices_container.add_child(button);
 
 func on_choice_click(index: int):
-	Ship.notification_result(_text, index)
+	StoryTeller.notification_result(_text, index)
 	get_parent().remove_child(self)
