@@ -114,7 +114,7 @@ func get_actions() -> Array:
 	print('get_actions')
 #	actions.append('jump' + str(len(actions)))
 #	return ['Jump', 'Recicle colonists', 'scan stars', 'scan planet', "colonise"]
-	actions = ['jump']
+	actions = ['jump', '#REMOVE_ME']
 	actions.append('update_state')
 	if current_object != null:
 		actions.append('scan planet')
@@ -146,6 +146,9 @@ func do_action(action: String, source=null):
 		if current_object != null:
 			emit_signal("notification", 
 			colonisation_text, ["Yes", "No"])
+			
+	if action == '#REMOVE_ME':
+		StoryTeller.tell_me_a_story("Test")
 		
 	if action == 'update_state':
 		update_state(-0.11, -0.17)

@@ -1,46 +1,57 @@
 extends Node
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+signal notification (description, choices)
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+var stories = {
+	"Test": preload("res://scenes/stories/TestStory.tscn")
+}
 
-var events_passed = []
-func start_new_game():
-	events_passed = []
-
-class Modification:
-	pass
-
-class Answer:
-	var text: String
-	var effect
-
-class Story:
-	var description: String
-	var answers: Array
-
-	func _init(_name: String, _answers: Array):
-		description = _name
-		answers = _answers
-
-
-signal notification (description, answers)
+var current_story = null
+var current_story_node = null
 
 func emit_notification(description: String, answers: Array = []):
-	emit_signal("notification", [description, answers])
+	emit_signal("notification", description, answers)
 	
 func process_answer(answer):
 	pass
 
-func tell_me_a_story():
-	pass
+func notification_result(text, result):
+	var next = (current_story_node as Node).get_child(result) 
+	_process_story(next as StoryStepNode)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func tell_me_a_story(name: String):
+	var storyPackedScene = stories[name] as PackedScene
+	var story  = storyPackedScene.instance()
+	_process_story(story.get_child(0) as StoryStepNode)
+
+func _process_story(node: StoryStepNode):
+	if len(node.redirrect_path) > 0:
+		var root = _get_orphan_root(node)
+		var new_node = root.get_node(node.redirrect_path)
+		if new_node != null:
+			node = new_node
+
+	current_story_node = node
+
+	var answers = []
+	for child in node.get_children():
+		var storyNode = child as StoryStepNode
+		answers.append(storyNode.edge_description)
+		
+	if len(answers) == 0:
+		current_story_node = null
+		return
+
+	emit_notification(node.node_description, answers)
+
+func _get_orphan_root(node: Node):
+	while true:
+		var parent = node.get_parent()
+		if parent == null:
+			return node
+		node = parent
+
+
+func _ready():
+	pass
