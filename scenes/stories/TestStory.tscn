@@ -40,3 +40,8 @@ script = ExtResource( 2 )
 node_description = ""
 edge_description = "Nope"
 redirrect_path = "Start"
+
+[node name="other" type="Node" parent="Start/Chose100500"]
+script = ExtResource( 2 )
+node_description = "node"
+edge_description = "edge"

@@ -6,6 +6,11 @@ var defence: float = 1
 var power: float = 1
 var support: float = 1
 var ai: float = 1
+
+var fuel: float = 1
+var energy: float = 1
+var people: float = 1
+var info: float = 1
 ##
 #var front_hull: float = 1
 #var side_hull: float = 1
@@ -33,10 +38,11 @@ signal move_ship_to (planet)
 signal state_changed 
 signal notification (description, choices)
 
-func update_state(delta_engine: float, delta_defence: float):
-	print('update_state: ', delta_engine, ', ', delta_defence)
+func update_state(delta_engine: float, delta_defence: float, delta_fuel: float):
+	print('update_state: ', delta_engine, ', ', delta_defence, ', ', delta_fuel)
 	engine += delta_engine
 	defence += delta_defence
+	fuel += delta_fuel
 	emit_signal("state_changed")
 
 func new_game():
@@ -46,6 +52,11 @@ func new_game():
 	power = 1
 	support = 1
 	ai = 1
+	
+	fuel = 1
+	energy = 1
+	people = 1
+	info = 1
 ##
 #	front_hull = 1
 #	side_hull = 1
@@ -151,7 +162,7 @@ func do_action(action: String, source=null):
 		StoryTeller.tell_me_a_story("Test")
 		
 	if action == 'update_state':
-		update_state(-0.11, -0.17)
+		update_state(-0.11, -0.17, -0.13)
 #		SceneChanger.current_scene.get_node('CanvasLayer').add_child(star_map_class.instance())
 
 var current_object = null
