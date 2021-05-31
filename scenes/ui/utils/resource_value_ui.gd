@@ -1,20 +1,19 @@
 tool
 extends HBoxContainer
 
-export var fullness: float = 1.0 setget _set_fullness
+export var fullness: float = 0.5 setget _set_fullness
 export var param_name: String = 'STUB' setget _set_param_name
 export var base_style: StyleBoxFlat setget _set_base_style
 export var base_font: Font setget _set_base_font
-export var yellow_brightness: float = 3 setget _set_yellow_brightness
-export var text_size: int = 30 setget _set_text_size
-export var pill_size: int = 4 setget _set_pill_size
+export var yellow_brightness: float = 2 setget _set_yellow_brightness
+export var text_size: int = 20 setget _set_text_size
+export var pill_size: int = 14 setget _set_pill_size
 
-var filled_style = null
-var current_style = null
-var drained_style = null
+var front_style = null
+var back_style = null
 
 onready var param_label: Label = $left_center_container/param_label
-onready var parts_container: Control = $right_center_container/parts_container
+onready var progress_bar: Control = $right_center_container/progress_bar
 
 func _ready():
 	_set_yellow_brightness(yellow_brightness)
@@ -32,13 +31,10 @@ func _set_text_size(new_text_size: int):
 	
 func _set_pill_size(new_pill_size: int):
 	pill_size = new_pill_size
-	if parts_container != null and base_style != null:
-		var parts = parts_container.get_children()
-		for part in parts:
-			var p: Control = part
-			var old_size = p.get_custom_minimum_size()
-			old_size.y = pill_size
-			p.set_custom_minimum_size(old_size)
+	if progress_bar != null and base_style != null:
+		var old_size = progress_bar.get_custom_minimum_size()
+		old_size.y = pill_size
+		progress_bar.set_custom_minimum_size(old_size)
 #	set_style_size(filled_style)
 #	set_style_size(current_style)
 #	set_style_size(drained_style)
@@ -57,12 +53,11 @@ func render_font():
 
 func _set_base_style(new_base_style: StyleBoxFlat):
 	base_style = new_base_style
-	filled_style = base_style.duplicate()
-	current_style = base_style.duplicate()
-	drained_style = base_style.duplicate()
-	
-	set_style_color(filled_style, Color(0, 1, 0))
-	set_style_color(drained_style, Color(1, 0, 0))
+	front_style = base_style.duplicate()
+	var old_border_color = front_style.get_border_color()
+	old_border_color.a = 0
+	front_style.set_border_color(old_border_color)
+	back_style = base_style.duplicate()
 	
 func set_style_color(style: StyleBoxFlat, color: Color):
 	style.set_bg_color(color)
@@ -86,34 +81,20 @@ func _set_yellow_brightness(new_yellow_brightness: float):
 #	print('fullness: ', fullness)
 
 func render_state():
-		
-	if parts_container != null and base_style != null:
-		var parts = parts_container.get_children()
-		var part_size: float = 1.0 / len(parts)
-		var current_part_index: int = int(fullness / part_size)
-		var current_fullness: float = fullness / part_size - current_part_index
+	if progress_bar != null and base_style != null:
 #		print('current_fullness: ', current_fullness)
-		var red: float = pow(1 - current_fullness, 1 / yellow_brightness)
-		var green: float = pow(current_fullness, 1 / yellow_brightness)
+		progress_bar.value = fullness
+		var red: float = pow(1 - fullness, 1 / yellow_brightness)
+		var green: float = pow(fullness, 1 / yellow_brightness)
 		var current_color: Color = Color(red, green, 0)
-		set_style_color(current_style, current_color)
-#		current_style.set_bg_color(current_color)
-#		current_style.set_shadow_color(current_color)
-#		print('len(parts): ', len(parts))
-#		print('current_part_index: ', current_part_index)
-		for i in len(parts):
-			var part: ProgressBar = parts[i]
-			if i < current_part_index:
-				part.set('custom_styles/bg', filled_style)
-			elif i == current_part_index:
-				part.set('custom_styles/bg', current_style)
-			else:
-				part.set('custom_styles/bg', drained_style)
+		var current_color_back: Color = current_color.darkened(0.5)
+		set_style_color(front_style, current_color)
+		set_style_color(back_style, current_color_back)
+		progress_bar.set('custom_styles/fg', front_style)
+		progress_bar.set('custom_styles/bg', back_style)
 	
-
 func _set_param_name(new_param_name: String):
 	param_name = new_param_name
 	if param_label != null:
 		param_label.text = param_name
-	
 
